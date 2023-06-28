@@ -1,10 +1,12 @@
 import "./App.css";
-import SignUp from "./routes/SignUp";
+import Beers from "./routes/Beers";
+// import SignUp from "./routes/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <SignUp />
+      {/* <SignUp /> */}
+      <Beers />
     </div>
   );
 }

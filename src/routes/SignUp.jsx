@@ -55,7 +55,7 @@ function SignUp() {
               Nombre
             </label>
             <input
-              className="w-full border rounded"
+              className="w-full border rounded ps-1"
               type="text"
               name="name"
               value={user.name}
@@ -68,7 +68,7 @@ function SignUp() {
               Número de socio
             </label>
             <input
-              className="w-full border rounded"
+              className="w-full border rounded ps-1"
               type="text"
               name="memberId"
               value={user.memberId}
@@ -81,7 +81,7 @@ function SignUp() {
               Número de contacto
             </label>
             <input
-              className="w-full border rounded"
+              className="w-full border rounded ps-1"
               type="text"
               name="phone"
               value={user.phone}
@@ -94,7 +94,7 @@ function SignUp() {
               Email
             </label>
             <input
-              className="w-full border rounded"
+              className="w-full border rounded ps-1"
               type="text"
               name="email"
               value={user.email}
@@ -107,7 +107,7 @@ function SignUp() {
               Password
             </label>
             <input
-              className="w-full border rounded"
+              className="w-full border rounded ps-1"
               type="text"
               name="password"
               value={user.password}
