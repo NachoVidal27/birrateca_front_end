@@ -8,6 +8,7 @@ module.exports = {
         "brown-dark": "#5A2919",
         "brow-light": "#8B5631",
         "cream-dark": "#ddaf79",
+        "cream-light": "#FAF4EC",
       },
     },
   },

@@ -44,11 +44,8 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h1 className="text-start text-xl ps-4 pb-1 font-semibold bg-black text-white  fixed w-full">
-        Sign Up
-      </h1>
-      <div className="flex text-start ms-4 pt-10">
+    <div className="mt-12">
+      <div className="flex text-start ms-4 pt-2">
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
             <label className="me-6" htmlFor="name">

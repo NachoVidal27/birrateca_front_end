@@ -6,10 +6,7 @@ console.log(birras);
 
 function Beers() {
   return (
-    <div>
-      <h1 className="text-start text-xl ps-4 pb-1 font-semibold bg-black text-white  fixed w-full">
-        Birras
-      </h1>
+    <div className="mt-12">
       <h2 className="text-start ps-6 pt-8 font-semibold mb-6">Disponibles</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-6">
         {birras.map((birra) => (
@@ -22,7 +19,7 @@ function Beers() {
             date={birra.date}
           />
         ))}
-      </div>
+      </div>{" "}
     </div>
   );
 }
