@@ -1,12 +1,12 @@
 import React from "react";
 
-function BeerCard({ photo, name, abv, date, description }) {
+function BeerCard({ photo, style, abv, date, description }) {
   return (
-    <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded  ">
+    <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 ">
       <img src={photo} alt="" className="h-[300px] w-full mx-auto rounded-t" />
       <div className="h-[195px]">
         <h4 className="text-xl font-semibold mt-2">
-          {name} - {abv}
+          {style} - {abv}
         </h4>
         <h6 className="text-xs font-">Fecha de elaboración {date}</h6>
         <h5 className="text-xs text-start mx-6 mt-2">{description}</h5>

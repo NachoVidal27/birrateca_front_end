@@ -145,7 +145,7 @@ function AddBeer() {
           <label htmlFor="photo">Photo</label>
           <input
             className="border-2 mt-2 mx-2"
-            type="text"
+            type="file"
             onChange={handlePhoto}
             value={newBeer.photo}
           />

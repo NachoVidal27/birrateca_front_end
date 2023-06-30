@@ -45,9 +45,9 @@ function Navbar() {
         <div className="flex justify-between items-center">
           <span
             id="navbarTitle"
-            className=" font-bold text-white   cursor-pointer ms-6 "
+            className=" font-bold text-white   cursor-pointer ms-10 "
           >
-            <a href="/" className="text-[2rem]">
+            <a href="/" className="text-[2rem] ms-4">
               Birrateca
             </a>
           </span>
@@ -62,27 +62,28 @@ function Navbar() {
           <li className="mx-4 my-6 md:my-0">
             <Link
               to="/birras"
-              className="text-xl text-white opacity-80 hover:opacity-100   duration-300 cursor-pointer font-semibold"
+              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium"
             >
-              Birras
-            </Link>
-          </li>
-          <li className="mx-4 my-6 md:my-0">
-            <Link
-              to="/signup"
-              className="text-xl text-white opacity-80 hover:opacity-100   duration-300 cursor-pointer font-semibold"
-            >
-              Signup
+              Catalogo
             </Link>
           </li>
           <li className="mx-4 my-6 md:my-0">
             <Link
               to="/birra-form"
-              className="text-xl text-white opacity-80 hover:opacity-100   duration-300 cursor-pointer font-semibold"
+              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium"
             >
-              Agregar Birra
+              Nueva birra
             </Link>
           </li>
+          <li className="mx-4 my-6 md:my-0">
+            <Link
+              to="/signup"
+              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium me-6"
+            >
+              Sign up
+            </Link>
+          </li>
+
           {/* <button className="text-xl px-3 py-2 mx-4 md:my-0 font-semibold bg-secondary rounded text-white  hover:border-0 hover:border-white hover:bg-secondary-light hover:text-primary duration-500 cursor-pointer">
             Contacto
           </button>{" "} */}
