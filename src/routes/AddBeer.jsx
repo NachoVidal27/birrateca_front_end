@@ -1,10 +1,13 @@
 import React from "react";
-import { useState } from "react";
-import birras from "../db";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import BeerCard from "../components/BeerCard";
+import axios from "axios";
+import { create } from "../redux/beerReducer";
+import { getAllBeers } from "../services/getAllBeers";
 
 function AddBeer() {
-  const [beer, setBeer] = useState([birras]);
+  const [beers, setBeers] = useState([]);
   const [newBeer, setNewBeer] = useState({
     beerId: "",
     style: "",
@@ -18,71 +21,98 @@ function AddBeer() {
 
   const handleIngredients = (e) => {
     const ingredients = e.target.value;
-    console.log(ingredients);
+
     setNewBeer({ ...newBeer, ingredients: ingredients });
   };
 
   const handleBrewDate = (e) => {
     const brewDate = e.target.value;
-    console.log(brewDate);
+
     setNewBeer({ ...newBeer, brewDate: brewDate });
   };
 
   const handleMemberId = (e) => {
     const memberId = e.target.value;
-    console.log(memberId);
+
     setNewBeer({ ...newBeer, memberId: memberId });
   };
 
   const handleStyle = (e) => {
     const style = e.target.value;
-    console.log(style);
+
     setNewBeer({ ...newBeer, style: style });
   };
 
   const handleDescription = (e) => {
     const description = e.target.value;
-    console.log(description);
+
     setNewBeer({ ...newBeer, description: description });
   };
 
   const handleAbv = (e) => {
     const abv = e.target.value;
-    console.log(abv);
+
     setNewBeer({ ...newBeer, abv: abv });
   };
 
   const handlePhoto = (e) => {
-    const photo = e.target.value;
+    const photo = e.target.files[0];
     console.log(photo);
     setNewBeer({ ...newBeer, photo: photo });
   };
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllBeers().then((data) => {
+      setBeers(data);
+    });
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const beerToAdd = {
-      beerId: beer.length + 1,
-      style: newBeer.style,
-      description: newBeer.description,
-      abv: newBeer.abv,
-      photo: newBeer.photo,
-      brewDate: newBeer.brewDate,
-      memberId: newBeer.memberId,
-      ingredients: newBeer.ingredients,
-    };
-    /* LA LINEA CORRECTA DEBE SER 
+    console.log(newBeer.photo);
+    const formData = new FormData();
+    formData.append("style", newBeer.style);
+    formData.append("description", newBeer.description);
+    formData.append("abv", newBeer.abv);
+    formData.append("photo", newBeer.photo);
+    formData.append("brewDate", newBeer.brewDate);
+    formData.append("ingredients", newBeer.ingredients);
+
+    const response = await axios({
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      method: "post",
+      url: "http://localhost:8000/beers",
+      data: formData,
+    });
+    dispatch(create(response.data));
+  };
+
+  // const beerToAdd = {
+  //   beerId: beer.length + 1,
+  //   style: newBeer.style,
+  //   description: newBeer.description,
+  //   abv: newBeer.abv,
+  //   photo: newBeer.photo,
+  //   brewDate: newBeer.brewDate,
+  //   memberId: newBeer.memberId,
+  //   ingredients: newBeer.ingredients,
+  // };
+  /* LA LINEA CORRECTA DEBE SER 
         setBeer([...beer, beerToAdd]);
 
         eliminamos el ...beer para que no renderice el objeto vacio
     */
-    setBeer([beerToAdd]);
-    setNewBeer("");
-    console.log(newBeer);
-  };
+  // setBeer([beerToAdd]);
+  // setNewBeer("");
+  // console.log(newBeer);
 
   return (
     <div className="mt-20">
-      {beer.map((birra) =>
+      {beers.map((birra) =>
         newBeer.beerId !== "" ? (
           <BeerCard
             key={birra.beerId}
@@ -90,9 +120,10 @@ function AddBeer() {
             abv={birra.abv}
             description={birra.description}
             date={birra.brewDate}
+            photo={birra.photo}
           />
         ) : (
-          console.log("cagaste guachin")
+          console.log("no se mapearon las birras")
         )
       )}
       <form onSubmit={handleSubmit}>
@@ -147,7 +178,6 @@ function AddBeer() {
             className="border-2 mt-2 mx-2"
             type="file"
             onChange={handlePhoto}
-            value={newBeer.photo}
           />
         </div>
         <div className="grid grid-cols-2">

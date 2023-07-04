@@ -1,19 +1,20 @@
 import React from "react";
 import BeerCard from "../components/BeerCard";
-import birras from "../db";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllBeers } from "../services/getAllBeers";
-
-console.log(birras);
+import { getAll } from "../redux/beerReducer";
 
 function Beers() {
-  const [beers, setBeers] = useState([]);
+  const beers = useSelector((state) => state.beer);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
     getAllBeers().then((data) => {
-      setBeers(data);
+      console.log(data);
+      dispatch(getAll(data));
       setLoading(false);
     });
   }, []);
@@ -29,7 +30,7 @@ function Beers() {
         ""
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-2 ">
-        {beers.map((birra) => (
+        {beers?.map((birra) => (
           <BeerCard
             key={birra.id}
             photo={birra.photo}

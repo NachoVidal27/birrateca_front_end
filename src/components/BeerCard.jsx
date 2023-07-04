@@ -1,9 +1,15 @@
 import React from "react";
 
 function BeerCard({ photo, style, abv, date, description }) {
+  console.log(photo);
+
   return (
     <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 ">
-      <img src={photo} alt="" className="h-[300px] w-full mx-auto rounded-t" />
+      <img
+        src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
+        alt=""
+        className="h-[300px] w-full mx-auto rounded-t"
+      />
       <div className="h-[195px]">
         <h4 className="text-xl font-semibold mt-2">
           {style} - {abv}
