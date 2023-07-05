@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import BeerCard from "../components/BeerCard";
+import BeerCardPreview from "../components/BeerCardPreview";
 import axios from "axios";
 import { create } from "../redux/beerReducer";
 import { getAllBeers } from "../services/getAllBeers";
+import { useNavigate } from "react-router-dom";
 
 function AddBeer() {
   const [beers, setBeers] = useState([]);
@@ -18,6 +19,8 @@ function AddBeer() {
     brewDate: "",
     memberId: "",
   });
+
+  const navigate = useNavigate();
 
   const handleIngredients = (e) => {
     const ingredients = e.target.value;
@@ -71,7 +74,6 @@ function AddBeer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newBeer.photo);
     const formData = new FormData();
     formData.append("style", newBeer.style);
     formData.append("description", newBeer.description);
@@ -89,6 +91,7 @@ function AddBeer() {
       data: formData,
     });
     dispatch(create(response.data));
+    navigate("/birras", { replace: true });
   };
 
   // const beerToAdd = {
@@ -111,89 +114,89 @@ function AddBeer() {
   // console.log(newBeer);
 
   return (
-    <div className="mt-20">
-      {beers.map((birra) =>
-        newBeer.beerId !== "" ? (
-          <BeerCard
-            key={birra.beerId}
-            name={birra.style}
-            abv={birra.abv}
-            description={birra.description}
-            date={birra.brewDate}
-            photo={birra.photo}
-          />
-        ) : (
-          console.log("no se mapearon las birras")
-        )
-      )}
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2">
-          <label htmlFor="style">Style</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleStyle}
-            value={newBeer.style}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="abv">Abv</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleAbv}
-            value={newBeer.abv}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="description">Description</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleDescription}
-            value={newBeer.description}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="ingredients">Ingredients</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleIngredients}
-            value={newBeer.ingredients}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="memeberId">MemberId</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleMemberId}
-            value={newBeer.memberId}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="photo">Photo</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="file"
-            onChange={handlePhoto}
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <label htmlFor="brewDate">BrewDate</label>
-          <input
-            className="border-2 mt-2 mx-2"
-            type="text"
-            onChange={handleBrewDate}
-            value={newBeer.brewDate}
-          />
-        </div>
+    <div className="grid grid-cols-2 mt-8">
+      {" "}
+      <div className="mt-20">
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-2">
+            <label htmlFor="style">Style</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleStyle}
+              value={newBeer.style}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="abv">Abv</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleAbv}
+              value={newBeer.abv}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="description">Description</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleDescription}
+              value={newBeer.description}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="ingredients">Ingredients</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleIngredients}
+              value={newBeer.ingredients}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="memeberId">MemberId</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleMemberId}
+              value={newBeer.memberId}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="photo">Photo</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="file"
+              onChange={handlePhoto}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="brewDate">BrewDate</label>
+            <input
+              className="border-2 mt-2 mx-2"
+              type="text"
+              onChange={handleBrewDate}
+              value={newBeer.brewDate}
+            />
+          </div>
 
-        <button className="px-2 py-1 bg-blue-400 text-white font-semibold rounded">
-          Guardar
-        </button>
-      </form>
+          <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
+            Guardar
+          </button>
+        </form>
+      </div>
+      <div className="mt-20">
+        <h3 className="text-xl font-bold  mb-4">PREVIEW</h3>
+        <BeerCardPreview
+          key={newBeer.id}
+          photo={newBeer.photo}
+          style={newBeer.style}
+          abv={newBeer.abv}
+          description={newBeer.description}
+          date={newBeer.brewDate}
+        />
+      </div>
     </div>
   );
 }

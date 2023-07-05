@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import ExchangeModal from "../components/ExchangeModal";
 
 function Home() {
   const theme = useSelector((state) => state.theme);
@@ -17,6 +18,7 @@ function Home() {
       <h2 className="font-bold">
         En este momento, el tema que tenemos es: {theme}
       </h2>
+      <ExchangeModal />
     </div>
   );
 }

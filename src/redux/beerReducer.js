@@ -7,7 +7,6 @@ const beerSlice = createSlice({
   initialState,
   reducers: {
     getAll(state, action) {
-      console.log(action.payload);
       return action.payload;
     },
     edit(state, action) {

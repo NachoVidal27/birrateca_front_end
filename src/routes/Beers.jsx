@@ -8,19 +8,19 @@ import { getAll } from "../redux/beerReducer";
 function Beers() {
   const beers = useSelector((state) => state.beer);
   const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
     getAllBeers().then((data) => {
-      console.log(data);
       dispatch(getAll(data));
       setLoading(false);
     });
   }, []);
 
   return (
-    <div className="mt-12">
+    <div className="mt-8">
       <h2 className=" ps-6 pt-8 text-[1.5rem] font-bold  mb-6 text-center">
         Disponibles
       </h2>
@@ -37,7 +37,7 @@ function Beers() {
             style={birra.style}
             abv={birra.abv}
             description={birra.description}
-            date={birra.date}
+            date={birra.brewDate}
           />
         ))}
       </div>{" "}
