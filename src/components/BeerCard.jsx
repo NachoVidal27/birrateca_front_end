@@ -47,7 +47,7 @@ function BeerCard({ photo, style, abv, date, description, brewDate }) {
                 </button>
               </div>
               <div className="grid grid-cols-2">
-                <div className="relative p-6 flex-auto border-r ">
+                <div className="relative p-6 flex-auto border-r q">
                   <img
                     src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                     alt=""

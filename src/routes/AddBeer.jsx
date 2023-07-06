@@ -1,14 +1,14 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import BeerCardPreview from "../components/BeerCardPreview";
 import axios from "axios";
 import { create } from "../redux/beerReducer";
-import { getAllBeers } from "../services/getAllBeers";
+// import { getAllBeers } from "../services/getAllBeers";
 import { useNavigate } from "react-router-dom";
 
 function AddBeer() {
-  const [beers, setBeers] = useState([]);
+  // const [beers, setBeers] = useState([]);
   const [newBeer, setNewBeer] = useState({
     beerId: "",
     style: "",
@@ -66,11 +66,11 @@ function AddBeer() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    getAllBeers().then((data) => {
-      setBeers(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getAllBeers().then((data) => {
+  //     setBeers(data);
+  //   });
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,9 +116,9 @@ function AddBeer() {
   return (
     <div className="grid grid-cols-2 mt-8">
       {" "}
-      <div className="mt-20">
+      <div className="mt-28">
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 mt-2">
             <label htmlFor="style">Style</label>
             <input
               className="border-2 mt-2 mx-2"

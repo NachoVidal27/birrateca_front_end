@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { create } from "../redux/beerReducer";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [user, setUser] = useState({
@@ -8,6 +12,8 @@ function SignUp() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleName = (e) => {
     const value = e.target.value;
@@ -39,8 +45,30 @@ function SignUp() {
     setUser({ ...user, password: value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newUser = {
+      name: user.name,
+      memberId: user.memberId,
+      email: user.email,
+      password: user.password,
+      phone: user.phone,
+    };
+    console.log("no entramos al axios");
+    const response = await axios({
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
+      },
+      method: "post",
+      url: "http://localhost:8000/users",
+      data: newUser,
+    });
+    dispatch(create(response.data));
+    navigate("/login", { replace: true });
+    console.log("entramos al axios");
   };
 
   return (
@@ -105,18 +133,18 @@ function SignUp() {
             </label>
             <input
               className="w-full border rounded ps-1"
-              type="text"
+              type="password"
               name="password"
               value={user.password}
               onChange={handlePassword}
               placeholder="Ingrese su password"
             />
           </div>
+          <button className="px-4 py-1 bg-blue-500 hover:bg-blue-400 text-l rounded mt-2 ">
+            Submit
+          </button>
         </form>
       </div>
-      <button className="px-4 py-1 bg-blue-500 hover:bg-blue-400 text-l rounded mt-2 ">
-        Submit
-      </button>
 
       <h1 className="text-xl text-yellow-500">{user.name}</h1>
       <h1 className="text-xl text-yellow-500">{user.memberId}</h1>

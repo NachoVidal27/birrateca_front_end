@@ -78,9 +78,17 @@ function Navbar() {
           <li className="mx-4 my-6 md:my-0">
             <Link
               to="/signup"
-              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium me-6"
+              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium "
             >
               Sign up
+            </Link>
+          </li>
+          <li className="mx-4 my-6 md:my-0">
+            <Link
+              to="/login"
+              className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium me-6"
+            >
+              Login
             </Link>
           </li>
 

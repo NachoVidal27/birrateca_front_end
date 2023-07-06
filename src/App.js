@@ -5,6 +5,7 @@ import SignUp from "./routes/SignUp";
 import Home from "./routes/Home";
 import Navbar from "./components/Navbar";
 import AddBeer from "./routes/AddBeer";
+import Login from "./routes/Login";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+
         <Route path="/birra-form" element={<AddBeer />} />
         <Route path="/birras" element={<Beers />} />
         <Route path="/signup" element={<SignUp />} />
