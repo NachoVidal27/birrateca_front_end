@@ -59,7 +59,6 @@ function SignUp() {
     console.log("no entramos al axios");
     const response = await axios({
       headers: {
-        // "Content-Type": "multipart/form-data",
         "Content-Type": "application/json",
       },
       method: "post",
@@ -67,16 +66,16 @@ function SignUp() {
       data: newUser,
     });
     dispatch(create(response.data));
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
     console.log("entramos al axios");
   };
 
   return (
     <div className="mt-12">
-      <div className="flex text-start ms-4 pt-2">
+      <div className="flex justify-center text-start mx-auto ms-4 pt-2">
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
-            <label className="me-6" htmlFor="name">
+            <label className="me-6 ps-1" htmlFor="name">
               Nombre
             </label>
             <input
@@ -89,7 +88,7 @@ function SignUp() {
             />
           </div>
           <div className="mb-2">
-            <label className="me-6 mb-2" htmlFor="memberId">
+            <label className="me-6 mb-2 ps-1" htmlFor="memberId">
               Número de socio
             </label>
             <input
@@ -102,7 +101,7 @@ function SignUp() {
             />
           </div>
           <div className="mb-2">
-            <label className="me-6" htmlFor="phone">
+            <label className="me-6 ps-1" htmlFor="phone">
               Número de contacto
             </label>
             <input
@@ -115,7 +114,7 @@ function SignUp() {
             />
           </div>
           <div className="mb-2">
-            <label className="me-6" htmlFor="email">
+            <label className="me-6 ps-1" htmlFor="email">
               Email
             </label>
             <input
@@ -128,7 +127,7 @@ function SignUp() {
             />
           </div>
           <div className="mb-2">
-            <label className="me-6" htmlFor="password">
+            <label className="me-6 ps-1" htmlFor="password">
               Password
             </label>
             <input
@@ -140,9 +139,11 @@ function SignUp() {
               placeholder="Ingrese su password"
             />
           </div>
-          <button className="px-4 py-1 bg-blue-500 hover:bg-blue-400 text-l rounded mt-2 ">
-            Submit
-          </button>
+          <div className="flex justify-center">
+            <button className="px-4 py-1  bg-cream-light hover:bg-cream-dark border-2 text-l rounded mt-2 ">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
 

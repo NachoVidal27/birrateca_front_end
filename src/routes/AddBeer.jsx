@@ -138,8 +138,8 @@ function AddBeer() {
           </div>
           <div className="grid grid-cols-2">
             <label htmlFor="description">Description</label>
-            <input
-              className="border-2 mt-2 mx-2"
+            <textarea
+              className="border-2 mt-2 mx-2 h-16 resize-none"
               type="text"
               onChange={handleDescription}
               value={newBeer.description}

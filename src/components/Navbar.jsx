@@ -41,7 +41,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="p-0 bg-black shadow md:flex md:items-center md:justify-between top-0 fixed  w-full ">
+      <nav className="p-0 bg-black shadow md:flex md:items-center md:justify-between top-0 z-50 fixed  w-full ">
         <div className="flex justify-between items-center">
           <span
             id="navbarTitle"

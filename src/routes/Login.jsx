@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/userReducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [memberId, setMemberId] = useState("");
@@ -25,7 +26,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await axios({
-      url: "http://localhost:8000/token",
+      url: "http://localhost:8000/users/token",
       data: { memberId, password },
       method: "post",
     });
@@ -56,9 +57,15 @@ function Login() {
             onChange={handlePassword}
           />
         </div>
-        <button className="px-4 py-1 bg-blue-500 hover:bg-blue-400 text-l rounded font-semibold mt-4">
+        <button className="px-4 py-1  bg-cream-dark border-2  text-l rounded font-semibold mt-4">
           Login
         </button>
+        <br />
+        <Link to="/signup">
+          <button className="px-2 py-1 bg-cream-light border-2 text-l rounded font-semibold mt-2">
+            Sign Up
+          </button>
+        </Link>
       </form>
     </div>
   );

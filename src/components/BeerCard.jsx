@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import smoked from "../assets/smoked.jpg";
 
-function BeerCard({ photo, style, abv, date, description, brewDate }) {
+function BeerCard({ photo, style, abv, date, description }) {
   const [exchangeModal, setExchangeModal] = useState(false);
   console.log(exchangeModal);
   const handleOpenModal = () => {
@@ -10,26 +11,38 @@ function BeerCard({ photo, style, abv, date, description, brewDate }) {
   const handleCloseModal = () => {
     setExchangeModal(false);
   };
+
+  const words = description.split(" ");
+  const truncatedWords = words.slice(0, 20);
+  const truncateText = truncatedWords.join(" ");
+  const adjustedDescription = truncateText + "...";
+  console.log(truncateText);
+
   return (
-    <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 ">
-      <img
-        src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
-        alt=""
-        className="h-[300px] w-full mx-auto rounded-t"
-      />
-      <div className="h-[195px]">
-        <h4 className="text-xl font-semibold mt-2">
-          {style} - {abv}%
-        </h4>
-        <h6 className="text-xs font-">Fecha de elaboración {date}</h6>
-        <h5 className="text-xs text-start mx-6 mt-2 truncate">{description}</h5>
+    <div>
+      <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 hover:scale-105 ">
+        <img
+          src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
+          alt=""
+          className="h-[300px] w-full mx-auto rounded-t "
+        />
+        <div className="h-[195px]">
+          <h4 className="text-xl font-semibold mt-2 mb-1">
+            {style} - {abv}%
+          </h4>
+          <h6 className="text-sm font-">Embotellada {date}</h6>
+
+          <h5 className="text-xs text-start mx-6 mt-2 h-2">
+            {truncateText.length > 20 ? adjustedDescription : truncateText}
+          </h5>
+        </div>
+        <button
+          className="px-2 py-1 bg-black text-white rounded-md hover:bg-cream-dark hover:scale-105  "
+          onClick={handleOpenModal}
+        >
+          Solicitar intercambio
+        </button>
       </div>
-      <button
-        className="px-2 py-1 bg-black text-white rounded-md hover:bg-green-800 hover:scale-105  "
-        onClick={handleOpenModal}
-      >
-        Solicitar intercambio
-      </button>
       {exchangeModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none max-w-3xl mx-auto">
@@ -46,38 +59,40 @@ function BeerCard({ photo, style, abv, date, description, brewDate }) {
                   x
                 </button>
               </div>
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 ">
                 <div className="relative p-6 flex-auto border-r q">
                   <img
                     src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                     alt=""
-                    className="h-[300px] w-[200px] mx-auto rounded-t"
+                    className="h-[300px] w-[250px] mx-auto rounded-t"
                   />
                   <h2 className="mt-2 text-lg font-semibold">
                     {style} - {abv}%
                   </h2>
-                  <p className="mt-2 text-slate-500 text-md leading-relaxed ">
+                  <p className="mt-2 text-slate-500 text-md leading-relaxed h-[100px]">
                     {description}
                   </p>
-                  <p className="mt-1">Elaborado en: {date}</p>
+                  <p className="mt-1">Elaborado en: Maldonado el {date}</p>
                 </div>
                 <div className="relative p-6 flex-auto ">
                   <img
-                    src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
+                    src={smoked}
                     alt=""
-                    className="h-[300px] w-[200px] mx-auto rounded-t"
+                    className="h-[300px] w-[250px] mx-auto rounded-t"
                   />
                   <h2 className="mt-2 text-lg font-semibold">
-                    {style} - {abv}%
+                    Smoked Wheat Beer - 4.2%
                   </h2>
 
-                  <p className="mt-2 text-slate-500 text-md leading-relaxed ">
-                    {description}
+                  <p className="mt-2 text-slate-500 text-md leading-relaxed h-[100px]">
+                    Low-alcohol beer with a clear, pale yellow to golden color,
+                    low to moderate levels of hop bitterness, and a moderate to
+                    medium-high smoky aroma and flavor
                   </p>
-                  <p className="mt-1">Elaborado en: {date}</p>
+                  <p className="mt-1">Elaborado en: Montevideo el 10/10/2022</p>
                 </div>
               </div>
-              <button className="bg-black px-3 py-2 w-fit mx-auto my-3 rounded text-md text-white">
+              <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
                 Intercambiar
               </button>
             </div>
