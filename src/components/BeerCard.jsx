@@ -16,23 +16,22 @@ function BeerCard({ photo, style, abv, date, description }) {
   const truncatedWords = words.slice(0, 20);
   const truncateText = truncatedWords.join(" ");
   const adjustedDescription = truncateText + "...";
-  console.log(truncateText);
 
   return (
     <div>
-      <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 hover:scale-105 ">
+      <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 md:hover:scale-105 ">
         <img
           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
           alt=""
           className="h-[300px] w-full mx-auto rounded-t "
         />
         <div className="h-[195px]">
-          <h4 className="text-xl font-semibold mt-2 mb-1">
+          <h4 className="text-lg font-semibold mt-2 mb-1">
             {style} - {abv}%
           </h4>
-          <h6 className="text-sm font-">Embotellada {date}</h6>
+          <h6 className="text-xs font-roboto">Embotellada {date}</h6>
 
-          <h5 className="text-xs text-start mx-6 mt-2 h-2">
+          <h5 className="text-xs text-start mx-6 mt-2 h-2 font-roboto">
             {truncateText.length > 20 ? adjustedDescription : truncateText}
           </h5>
         </div>
@@ -69,10 +68,10 @@ function BeerCard({ photo, style, abv, date, description }) {
                   <h2 className="mt-2 text-lg font-semibold">
                     {style} - {abv}%
                   </h2>
-                  <p className="mt-2 text-slate-500 text-md leading-relaxed h-[100px]">
+                  <p className="mt-2 text-slate-500 text-md  h-[100px] leading-5">
                     {description}
                   </p>
-                  <p className="mt-1">Elaborado en: Maldonado el {date}</p>
+                  <p className="mt-8">Elaborado en: Maldonado el {date}</p>
                 </div>
                 <div className="relative p-6 flex-auto ">
                   <img
@@ -84,12 +83,12 @@ function BeerCard({ photo, style, abv, date, description }) {
                     Smoked Wheat Beer - 4.2%
                   </h2>
 
-                  <p className="mt-2 text-slate-500 text-md leading-relaxed h-[100px]">
+                  <p className="mt-2 text-slate-500 text-md leading-5 h-[100px]">
                     Low-alcohol beer with a clear, pale yellow to golden color,
                     low to moderate levels of hop bitterness, and a moderate to
                     medium-high smoky aroma and flavor
                   </p>
-                  <p className="mt-1">Elaborado en: Montevideo el 10/10/2022</p>
+                  <p className="mt-8">Elaborado en: Montevideo el 10/10/2022</p>
                 </div>
               </div>
               <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">

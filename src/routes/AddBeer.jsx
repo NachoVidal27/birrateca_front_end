@@ -143,6 +143,7 @@ function AddBeer() {
               type="text"
               onChange={handleDescription}
               value={newBeer.description}
+              maxLength={160}
             />
           </div>
           <div className="grid grid-cols-2">

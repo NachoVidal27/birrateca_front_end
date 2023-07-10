@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import Navbar from "./components/Navbar";
 import AddBeer from "./routes/AddBeer";
 import Login from "./routes/Login";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/birras" element={<Beers />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

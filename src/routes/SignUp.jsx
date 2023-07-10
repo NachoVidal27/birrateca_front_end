@@ -146,12 +146,6 @@ function SignUp() {
           </div>
         </form>
       </div>
-
-      <h1 className="text-xl text-yellow-500">{user.name}</h1>
-      <h1 className="text-xl text-yellow-500">{user.memberId}</h1>
-      <h1 className="text-xl text-yellow-500">{user.phone}</h1>
-      <h1 className="text-xl text-yellow-500">{user.email}</h1>
-      <h1 className="text-xl text-yellow-500">{user.password}</h1>
     </div>
   );
 }
