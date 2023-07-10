@@ -1,6 +1,6 @@
 import React from "react";
 import BeerCard from "../components/BeerCard";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBeers } from "../services/getAllBeers";
 import { getAll } from "../redux/beerReducer";
@@ -18,7 +18,7 @@ function Beers() {
 
   return (
     <div className="mt-8">
-      <h2 className=" ps-6 pt-8 text-[2rem] font-bold text-center font-roboto">
+      <h2 className=" px-auto pt-8 text-[2rem] font-bold text-center font-roboto">
         Nuestras birras
       </h2>
       <div className="w-[40%] border border-b-1 mx-auto mt-2 border-cream-dark opacity-40 mb-10"></div>
@@ -31,6 +31,7 @@ function Beers() {
             abv={birra.abv}
             description={birra.description}
             date={birra.brewDate}
+            location={birra.location}
           />
         ))}
       </div>{" "}

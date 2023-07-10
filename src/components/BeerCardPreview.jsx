@@ -1,7 +1,7 @@
 import React from "react";
 import glass from "../assets/glassLoading.gif";
 
-function BeerCardPreview({ photo, style, abv, date, description }) {
+function BeerCardPreview({ photo, style, abv, date, description, location }) {
   console.log(process.env.SUPABASE_URL);
   const url = `${process.env.SUPABASE_URL}/birra_fotos/${photo}`;
   console.log(url);
@@ -14,6 +14,7 @@ function BeerCardPreview({ photo, style, abv, date, description }) {
           {style} - {abv}%
         </h4>
         <h6 className="text-xs font-">Fecha de elaboración {date}</h6>
+        <h4>{location}</h4>
         <h5 className="text-xs text-start mx-6 mt-2 truncate">{description}</h5>
       </div>
     </div>

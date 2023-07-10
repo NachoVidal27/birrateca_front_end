@@ -13,7 +13,7 @@ function AddBeer() {
     beerId: "",
     style: "",
     description: "",
-    ingredients: "",
+    location: "",
     abv: "",
     photo: "",
     brewDate: "",
@@ -23,9 +23,9 @@ function AddBeer() {
   const navigate = useNavigate();
 
   const handleIngredients = (e) => {
-    const ingredients = e.target.value;
+    const location = e.target.value;
 
-    setNewBeer({ ...newBeer, ingredients: ingredients });
+    setNewBeer({ ...newBeer, location: location });
   };
 
   const handleBrewDate = (e) => {
@@ -80,7 +80,7 @@ function AddBeer() {
     formData.append("abv", newBeer.abv);
     formData.append("photo", newBeer.photo);
     formData.append("brewDate", newBeer.brewDate);
-    formData.append("ingredients", newBeer.ingredients);
+    formData.append("location", newBeer.location);
 
     const response = await axios({
       headers: {
@@ -102,7 +102,7 @@ function AddBeer() {
   //   photo: newBeer.photo,
   //   brewDate: newBeer.brewDate,
   //   memberId: newBeer.memberId,
-  //   ingredients: newBeer.ingredients,
+  //   location: newBeer.location,
   // };
   /* LA LINEA CORRECTA DEBE SER 
         setBeer([...beer, beerToAdd]);
@@ -119,7 +119,7 @@ function AddBeer() {
       <div className="mt-28">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 mt-2">
-            <label htmlFor="style">Style</label>
+            <label htmlFor="style">Estilo BJCP</label>
             <input
               className="border-2 mt-2 mx-2"
               type="text"
@@ -136,27 +136,18 @@ function AddBeer() {
               value={newBeer.abv}
             />
           </div>
+
           <div className="grid grid-cols-2">
-            <label htmlFor="description">Description</label>
-            <textarea
-              className="border-2 mt-2 mx-2 h-16 resize-none"
-              type="text"
-              onChange={handleDescription}
-              value={newBeer.description}
-              maxLength={160}
-            />
-          </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="ingredients">Ingredients</label>
+            <label htmlFor="location">Ubicación</label>
             <input
               className="border-2 mt-2 mx-2"
               type="text"
               onChange={handleIngredients}
-              value={newBeer.ingredients}
+              value={newBeer.location}
             />
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="memeberId">MemberId</label>
+            <label htmlFor="memeberId">Número de socio</label>
             <input
               className="border-2 mt-2 mx-2"
               type="text"
@@ -165,7 +156,7 @@ function AddBeer() {
             />
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="photo">Photo</label>
+            <label htmlFor="photo">Foto</label>
             <input
               className="border-2 mt-2 mx-2"
               type="file"
@@ -173,12 +164,22 @@ function AddBeer() {
             />
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="brewDate">BrewDate</label>
+            <label htmlFor="brewDate">Fecha de elaboración</label>
             <input
               className="border-2 mt-2 mx-2"
               type="text"
               onChange={handleBrewDate}
               value={newBeer.brewDate}
+            />
+          </div>
+          <div className="grid grid-cols-2">
+            <label htmlFor="description">Descripción</label>
+            <textarea
+              className="border-2 mt-2 mx-2 h-16 resize-none"
+              type="text"
+              onChange={handleDescription}
+              value={newBeer.description}
+              maxLength={160}
             />
           </div>
 
@@ -196,6 +197,7 @@ function AddBeer() {
           abv={newBeer.abv}
           description={newBeer.description}
           date={newBeer.brewDate}
+          location={newBeer.location}
         />
       </div>
     </div>

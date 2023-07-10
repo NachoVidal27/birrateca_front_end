@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import smoked from "../assets/smoked.jpg";
 
-function BeerCard({ photo, style, abv, date, description }) {
+function BeerCard({ photo, style, abv, date, description, location }) {
   const [exchangeModal, setExchangeModal] = useState(false);
-  console.log(exchangeModal);
   const handleOpenModal = () => {
     setExchangeModal(true);
   };
@@ -25,16 +24,19 @@ function BeerCard({ photo, style, abv, date, description }) {
           alt=""
           className="h-[300px] w-full mx-auto rounded-t "
         />
-        <div className="h-[195px]">
+        <div className="h-[150px]">
           <h4 className="text-lg font-semibold mt-2 mb-1">
             {style} - {abv}%
           </h4>
-          <h6 className="text-xs font-roboto">Embotellada {date}</h6>
+          <h6 className="text-xs font-roboto">
+            Elaborada en {location} el {date}
+          </h6>
 
           <h5 className="text-xs text-start mx-6 mt-2 h-2 font-roboto">
             {truncateText.length > 20 ? adjustedDescription : truncateText}
           </h5>
         </div>
+
         <button
           className="px-2 py-1 bg-black text-white rounded-md hover:bg-cream-dark hover:scale-105  "
           onClick={handleOpenModal}
@@ -58,37 +60,55 @@ function BeerCard({ photo, style, abv, date, description }) {
                   x
                 </button>
               </div>
-              <div className="grid grid-cols-2 ">
-                <div className="relative p-6 flex-auto border-r q">
-                  <img
-                    src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
-                    alt=""
-                    className="h-[300px] w-[250px] mx-auto rounded-t"
-                  />
-                  <h2 className="mt-2 text-lg font-semibold">
-                    {style} - {abv}%
-                  </h2>
-                  <p className="mt-2 text-slate-500 text-md  h-[100px] leading-5">
-                    {description}
-                  </p>
-                  <p className="mt-8">Elaborado en: Maldonado el {date}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 ">
+                <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 ">
+                  <div>
+                    {" "}
+                    <img
+                      src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
+                      alt=""
+                      className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
+                    />
+                  </div>
+                  <div className="ms-2">
+                    <h2 className="mt-2 text-md lg:text-lg font-semibold">
+                      {style} - {abv}%
+                    </h2>{" "}
+                    <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
+                      {adjustedDescription}
+                    </p>
+                    <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
+                      {description}
+                    </p>
+                    <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
+                      Elaborado en: {location} el {date}
+                    </p>
+                  </div>
                 </div>
-                <div className="relative p-6 flex-auto ">
-                  <img
-                    src={smoked}
-                    alt=""
-                    className="h-[300px] w-[250px] mx-auto rounded-t"
-                  />
-                  <h2 className="mt-2 text-lg font-semibold">
-                    Smoked Wheat Beer - 4.2%
-                  </h2>
 
-                  <p className="mt-2 text-slate-500 text-md leading-5 h-[100px]">
-                    Low-alcohol beer with a clear, pale yellow to golden color,
-                    low to moderate levels of hop bitterness, and a moderate to
-                    medium-high smoky aroma and flavor
-                  </p>
-                  <p className="mt-8">Elaborado en: Montevideo el 10/10/2022</p>
+                <div className="relative p-6 flex-auto grid grid-cols-2 md:grid-cols-1">
+                  <div>
+                    <img
+                      src={smoked}
+                      alt=""
+                      className="h-[200px] md:h-[300px] w-[170px]   md:w-[250px] mx-auto rounded-t"
+                    />
+                  </div>
+                  <div className="ms-2">
+                    <h2 className="mt-2 text-md md:text-lg font-semibold">
+                      Smoked Wheat - 4.2%
+                    </h2>
+
+                    <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
+                      {adjustedDescription}
+                    </p>
+                    <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
+                      {description}
+                    </p>
+                    <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
+                      Elaborado en: Montevideo, Aguada el 10/10/2022
+                    </p>
+                  </div>
                 </div>
               </div>
               <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">

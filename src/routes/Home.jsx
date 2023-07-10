@@ -16,12 +16,12 @@ function Home() {
         </div>
       </div>
 
-      <div className="mt-10 mx-10  mb-16 2xl:mx-20">
+      <div className="mt-4 2xl:mt-10 mx-10  mb-16 2xl:mx-20">
         <h3 className="text-2xl md:text-3xl font-bold font-roboto">
           Proyecto Birrateca
         </h3>
         <p
-          className=" text-md md:text-xl w-[55%] mx-auto mt-4 font-roboto 
+          className=" text-md md:text-xl w-[55%] mx-auto mt-2 font-roboto 
         "
         >
           Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
@@ -30,7 +30,7 @@ function Home() {
           aromas y sabores, donde la pasión por la cerveza se combina con la
           emoción del intercambio.
         </p>
-        <div className="w-[80%] border border-b-1 mx-auto mt-8 border-cream-dark opacity-60"></div>
+        <div className="w-[80%] border border-b-1 mx-auto mt-2 border-cream-dark opacity-60"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-14  md:mx-10">
           <div>
             <img
