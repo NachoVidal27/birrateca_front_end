@@ -10,6 +10,9 @@ module.exports = {
         "cream-dark": "#ddaf79",
         "cream-light": "#FAF4EC",
       },
+      fontFamily: {
+        roboto: ["Roboto Condensed"],
+      },
     },
   },
   plugins: [],
