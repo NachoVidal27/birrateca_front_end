@@ -3,12 +3,13 @@ import barril from "../assets/barrilHero.jpeg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
 import beerFromTop from "../assets/beer_transparent.png";
+import Loader from "../components/Loader";
 
 function Home() {
   return (
     <div class="">
       <div class="relative">
-        <img src={barril} alt="" />
+        <img src={barril} className="w-full" alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold text-white text-center">
             Bienvenido a la Birrateca del CCCUY
@@ -21,7 +22,7 @@ function Home() {
           Proyecto Birrateca
         </h3>
         <p
-          className=" text-md md:text-xl w-[55%] mx-auto mt-2 font-roboto 
+          className=" text-md md:text-xl w-[85%] md:w-[55%] mx-auto mt-2 font-roboto 
         "
         >
           Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
@@ -102,9 +103,10 @@ function Home() {
             <p className="text-md md:text-xl text-center md:text-start mt-2 md:w-[80%] font-roboto">
               Cuando encuentres una cerveza que despierte tu curiosidad,
               simplemente solicita un intercambio con el socio elaborador.
-              Podrás ofrecer una de tus propias creaciones para intercambiar con
-              otro socio. El objetivo de esta comunidad es unir socios y mejorar
-              la calidad de cada cerveza con las devoluciones de los mismos.
+              Deberás ofrecer una de tus propias creaciones para intercambiar
+              con otro socio. El objetivo de esta comunidad es unir socios y
+              mejorar la calidad de cada cerveza con las devoluciones de los
+              mismos.
             </p>
           </div>
         </div>

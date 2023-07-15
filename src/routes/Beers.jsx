@@ -17,7 +17,7 @@ function Beers() {
   }, []);
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 mb-12">
       <h2 className=" px-auto pt-8 text-[2rem] font-bold text-center font-roboto">
         Nuestras birras
       </h2>

@@ -6,6 +6,7 @@ import axios from "axios";
 import { create } from "../redux/beerReducer";
 // import { getAllBeers } from "../services/getAllBeers";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function AddBeer() {
   // const [beers, setBeers] = useState([]);
@@ -114,82 +115,129 @@ function AddBeer() {
   // console.log(newBeer);
 
   return (
-    <div className="grid grid-cols-2 mt-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 mt-0 md:mt-8 mb-32 h-[80vh]">
       {" "}
-      <div className="mt-28">
+      <div className="mt-14 md:mt-28">
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 mt-2">
-            <label htmlFor="style">Estilo BJCP</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="style"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Estilo BJCP
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2  mx-8 md:mx-2 roundeed"
               type="text"
               onChange={handleStyle}
               value={newBeer.style}
             />
           </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="abv">Abv</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="abv"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Abv
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2  mx-8 md:mx-2 roundeed"
               type="text"
               onChange={handleAbv}
               value={newBeer.abv}
             />
           </div>
-
-          <div className="grid grid-cols-2">
-            <label htmlFor="location">Ubicación</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="location"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Ubicación
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2 mx-8 md:mx-2 roundeed"
               type="text"
               onChange={handleIngredients}
               value={newBeer.location}
             />
           </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="memeberId">Número de socio</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="memeberId"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Número de socio
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2  mx-8 md:mx-2 roundeed"
               type="text"
               onChange={handleMemberId}
               value={newBeer.memberId}
             />
           </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="photo">Foto</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="photo"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Foto
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2 mx-8 md:mx-2 roundeed"
               type="file"
               onChange={handlePhoto}
             />
           </div>
           <div className="grid grid-cols-2">
-            <label htmlFor="brewDate">Fecha de elaboración</label>
+            <div></div>
+            <Link to="/tips">
+              <div className="border border-black rounded bg-black mx-2 roundeed my-1 py-1 hover:bg-cream-dark">
+                <h2 className="text-white text-sm  hover:text-black ">
+                  tips para fotografías
+                </h2>
+              </div>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="brewDate"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Fecha de elaboración
+            </label>
             <input
-              className="border-2 mt-2 mx-2"
+              className="border-2 mx-8 md:mx-2 roundeed"
               type="text"
               onChange={handleBrewDate}
               value={newBeer.brewDate}
             />
           </div>
-          <div className="grid grid-cols-2">
-            <label htmlFor="description">Descripción</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+            <label
+              htmlFor="description"
+              className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+            >
+              Descripción
+            </label>
             <textarea
-              className="border-2 mt-2 mx-2 h-16 resize-none"
+              className="border-2 mx-8 md:mx-2 roundeed h-16 resize-none"
               type="text"
               onChange={handleDescription}
               value={newBeer.description}
               maxLength={160}
             />
           </div>
-
-          <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
-            Guardar
-          </button>
+          <div></div>
+          <div className="">
+            {" "}
+            <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
+              Guardar
+            </button>
+          </div>
         </form>
       </div>
-      <div className="mt-20">
-        <h3 className="text-xl font-bold  mb-4">PREVIEW</h3>
+      <div className="invisible md:visible mt-20">
+        <h3 className=" text-xl font-bold  mb-3">PREVIEW</h3>
         <BeerCardPreview
           key={newBeer.id}
           photo={newBeer.photo}

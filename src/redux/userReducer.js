@@ -13,8 +13,10 @@ const userSlice = createSlice({
       return action.payload;
     },
     edit(state, action) {
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
+      state.memberId = action.paylod.memberId;
+      state.name = action.payload.name;
+      state.phone = action.payload.phone;
+      state.email = action.payload.email;
     },
     logOut(state, action) {
       return null;

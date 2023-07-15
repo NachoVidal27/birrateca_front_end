@@ -71,7 +71,7 @@ function SignUp() {
   };
 
   return (
-    <div className="mt-12">
+    <div className="mt-20 h-[75vh]">
       <div className="flex justify-center text-start mx-auto ms-4 pt-2">
         <form onSubmit={handleSubmit}>
           <div className="mb-2">

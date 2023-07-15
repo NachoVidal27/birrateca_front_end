@@ -18,7 +18,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
 
   return (
     <div>
-      <div className="w-[275px] sm:w-[250px] bg-cream-light h-[550px] mx-auto rounded mb-8 md:hover:scale-105 ">
+      <div className="w-[275px] sm:w-[250px] bg-cream-light h-[500px] mx-auto rounded mb-8 md:hover:scale-105 ">
         <img
           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
           alt=""
@@ -94,7 +94,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                       className="h-[200px] md:h-[300px] w-[170px]   md:w-[250px] mx-auto rounded-t"
                     />
                   </div>
-                  <div className="ms-2">
+                  <div className="ms-2 ">
                     <h2 className="mt-2 text-md md:text-lg font-semibold">
                       Smoked Wheat - 4.2%
                     </h2>
