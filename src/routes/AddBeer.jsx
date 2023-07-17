@@ -7,9 +7,10 @@ import { create } from "../redux/beerReducer";
 // import { getAllBeers } from "../services/getAllBeers";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 function AddBeer() {
-  // const [beers, setBeers] = useState([]);
+  const user = useSelector((state) => state.user);
   const [newBeer, setNewBeer] = useState({
     beerId: "",
     style: "",
@@ -76,6 +77,7 @@ function AddBeer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("userId", user._id);
     formData.append("style", newBeer.style);
     formData.append("description", newBeer.description);
     formData.append("abv", newBeer.abv);

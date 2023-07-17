@@ -12,9 +12,9 @@ function BeerCard({ photo, style, abv, date, description, location }) {
   };
 
   console.log(description);
-  const words = description.split(" ");
-  const truncatedWords = words.slice(0, 20);
-  const truncateText = truncatedWords.join(" ");
+  const words = description?.split(" ");
+  const truncatedWords = words?.slice(0, 20);
+  const truncateText = truncatedWords?.join(" ");
   const adjustedDescription = truncateText + "...";
 
   return (

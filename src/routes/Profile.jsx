@@ -1,10 +1,70 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { edit } from "../redux/userReducer";
 
 function Profile() {
   const user = useSelector((state) => state.user);
-  console.log(user);
+  const [name, setName] = useState(user.name);
+  const [memberId, setMemberId] = useState(user.memberId);
+  const [phone, setPhone] = useState(user.phone);
+  const [email, setEmail] = useState(user.email);
+  const [formError, setFormError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleName = (e) => {
+    const value = e.target.value;
+    setName(value);
+  };
+
+  const handleMemberId = (e) => {
+    const value = e.target.value;
+    setMemberId(value);
+  };
+
+  const handlePhone = (e) => {
+    const value = e.target.value;
+    setPhone(value);
+  };
+
+  const handleEmail = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!name || !memberId || !phone || !email) {
+      setFormError("Por favor, asegurate de completar todos los campos ");
+      return;
+    }
+    try {
+      const response = await axios({
+        method: "patch",
+        url: `http://localhost:8000/users/${user.id}`,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+        data: {
+          name,
+          memberId,
+          phone,
+          email,
+        },
+      });
+      navigate("/");
+      dispatch(edit(response.data));
+    } catch (error) {
+      console.log(error);
+      setFormError("An error occurred while submitting the form.");
+    }
+  };
+
   return (
-    <div className="mt-20 h-[90vh]">
+    <div className="mt-24 h-[90vh]">
       <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
       <h3 className="text-xl font-semibold mt-1">
         Aqui podrás editar la información de tu cuenta
@@ -14,7 +74,7 @@ function Profile() {
           <h2 className="text-2xl font-semibold mb-8">
             Información de usuario
           </h2>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 my-3 mx-4">
               <label
                 htmlFor="name"
@@ -25,7 +85,8 @@ function Profile() {
               <input
                 type="text"
                 className="border border-black rounded px-2"
-                value={user.name}
+                value={name}
+                onChange={handleName}
               />
             </div>
             <hr />
@@ -39,7 +100,8 @@ function Profile() {
               <input
                 type="text"
                 className="border border-black rounded px-2"
-                value={user.memberId}
+                value={memberId}
+                onChange={handleMemberId}
               />
             </div>
             <hr />
@@ -53,7 +115,8 @@ function Profile() {
               <input
                 type="text"
                 className="border border-black rounded px-2"
-                value={user.phone}
+                value={phone}
+                onChange={handlePhone}
               />
             </div>
             <hr />
@@ -67,10 +130,18 @@ function Profile() {
               <input
                 type="text"
                 className="border border-black rounded px-2 "
-                value={user.email}
+                value={email}
+                onChange={handleEmail}
               />
             </div>
             <hr />
+            <div>
+              {" "}
+              <small className="text-red-600 text-md font-semibold">
+                {formError}
+              </small>
+            </div>
+
             <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-4 rounded text-md text-white">
               Confirmar cambios
             </button>
