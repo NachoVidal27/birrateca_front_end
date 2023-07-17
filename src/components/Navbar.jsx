@@ -64,7 +64,7 @@ function Navbar() {
                 to="/birra-form"
                 className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium"
               >
-                Novedades
+                Nueva birra
               </Link>
             </li>
 
