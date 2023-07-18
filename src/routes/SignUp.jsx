@@ -66,7 +66,7 @@ function SignUp() {
       data: newUser,
     });
     dispatch(create(response.data));
-    navigate("/", { replace: true });
+    navigate("/login", { replace: true });
     console.log("entramos al axios");
   };
 
