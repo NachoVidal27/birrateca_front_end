@@ -13,7 +13,7 @@ const userSlice = createSlice({
       return action.payload;
     },
     edit(state, action) {
-      state.memberId = action.paylod.memberId;
+      state.memberId = action.payload.memberId;
       state.name = action.payload.name;
       state.phone = action.payload.phone;
       state.email = action.payload.email;

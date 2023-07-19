@@ -90,7 +90,7 @@ function AddBeer() {
         Authorization: `Bearer ${user.token}`,
       },
       method: "post",
-      url: "http://localhost:8000/beers",
+      url: `${process.env.REACT_APP_API_URL}/beers`,
       data: formData,
     });
     dispatch(create(response.data));

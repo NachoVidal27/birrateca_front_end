@@ -8,7 +8,6 @@ import SmallerBeerCard from "../components/SmallerBeerCard";
 
 function Profile() {
   const user = useSelector((state) => state.user);
-  console.log(user.beers);
   const [name, setName] = useState(user.name);
   const [memberId, setMemberId] = useState(user.memberId);
   const [phone, setPhone] = useState(user.phone);

@@ -26,7 +26,7 @@ function Login() {
     try {
       e.preventDefault();
       const response = await axios({
-        url: "http://localhost:8000/users/token",
+        url: `${process.env.REACT_APP_API_URL}/users/token`,
         data: { memberId: memberId, password: password },
         method: "post",
       });

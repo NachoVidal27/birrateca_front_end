@@ -67,7 +67,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                     <div>
                       {" "}
                       <img
-                        src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
+                        src={`${process.env.SUPABASE_URL}${photo}`}
                         alt=""
                         className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
                       />
