@@ -68,49 +68,85 @@ function Profile() {
   return (
     <div className="mt-24 h-[150vh] mb-36">
       <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
-      <h3 className="text-xl font-semibold mt-1">Aqui podrás editar la información de tu cuenta</h3>
+      <h3 className="text-xl font-semibold mt-1">
+        Aqui podrás editar la información de tu cuenta
+      </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-12 mx-6 gap-4">
         <div className="h-80 w-[70%] mx-auto">
-<<<<<<< Updated upstream
-          <h2 className="text-2xl font-semibold mb-8">Información de usuario</h2>
-=======
-          <h2 className="text-xl font-semibold mb-6">Información de usuario</h2>
->>>>>>> Stashed changes
+          <h2 className="text-2xl font-semibold mb-8">
+            Información de usuario
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 my-3 mx-4">
-              <label htmlFor="name" className="text-start text-lg font-semibold">
+              <label
+                htmlFor="name"
+                className="text-start text-lg font-semibold"
+              >
                 Nombre
               </label>
-              <input type="text" className="border border-black rounded px-2" value={name} onChange={handleName} />
+              <input
+                type="text"
+                className="border border-black rounded px-2"
+                value={name}
+                onChange={handleName}
+              />
             </div>
             <hr />
             <div className="grid grid-cols-2 my-3 mx-4">
-              <label htmlFor="memberId" className="text-start text-lg font-semibold">
+              <label
+                htmlFor="memberId"
+                className="text-start text-lg font-semibold"
+              >
                 Número de socio
               </label>
-              <input type="text" className="border border-black rounded px-2" value={memberId} onChange={handleMemberId} />
+              <input
+                type="text"
+                className="border border-black rounded px-2"
+                value={memberId}
+                onChange={handleMemberId}
+              />
             </div>
             <hr />
             <div className="grid grid-cols-2 my-3 mx-4">
-              <label htmlFor="phone" className="text-start text-lg font-semibold ">
+              <label
+                htmlFor="phone"
+                className="text-start text-lg font-semibold "
+              >
                 Teléfono
               </label>
-              <input type="text" className="border border-black rounded px-2" value={phone} onChange={handlePhone} />
+              <input
+                type="text"
+                className="border border-black rounded px-2"
+                value={phone}
+                onChange={handlePhone}
+              />
             </div>
             <hr />
             <div className="grid grid-cols-2 my-3 mx-4">
-              <label htmlFor="email" className="text-start text-lg font-semibold">
+              <label
+                htmlFor="email"
+                className="text-start text-lg font-semibold"
+              >
                 Email
               </label>
-              <input type="text" className="border border-black rounded px-2 " value={email} onChange={handleEmail} />
+              <input
+                type="text"
+                className="border border-black rounded px-2 "
+                value={email}
+                onChange={handleEmail}
+              />
             </div>
             <hr />
             <div>
               {" "}
-              <small className="text-red-600 text-md font-semibold">{formError}</small>
+              <small className="text-red-600 text-md font-semibold">
+                {formError}
+              </small>
             </div>
 
-            <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-4 rounded text-md text-white">Confirmar cambios</button>
+            <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-4 rounded text-md text-white">
+              Confirmar cambios
+            </button>
           </form>
         </div>
         <div className="h-60 grid  gap-0.5">
