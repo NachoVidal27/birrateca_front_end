@@ -56,7 +56,7 @@ function Profile() {
           email,
         },
       });
-      navigate("/");
+      navigate("/perfil");
       dispatch(edit(response.data));
     } catch (error) {
       console.log(error);
@@ -65,7 +65,7 @@ function Profile() {
   };
 
   return (
-    <div className="mt-24 h-[150vh] mb-36">
+    <div className="mt-24 h-[120vh] mb-36">
       <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
       <h3 className="text-xl font-semibold mt-1">
         Aqui podrás editar la información de tu cuenta
@@ -150,7 +150,7 @@ function Profile() {
         </div>
         <div className="h-60 grid  gap-0.5">
           <h2 className="text-xl font-semibold mb-6">Tus birras</h2>
-          <div className="flex align-center justify-between">
+          <div className="">
             {user.beers.map((birra) => (
               <SmallerBeerCard
                 key={birra.id}

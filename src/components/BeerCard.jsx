@@ -1,9 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import smoked from "../assets/smoked.jpg";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import ExchangeCards from "./ExchangeCards";
+import { Link } from "react-router-dom";
 
 function BeerCard({ photo, style, abv, date, description, location }) {
+  const user = useSelector((state) => state.user);
   const [exchangeModal, setExchangeModal] = useState(false);
+  const [myBeerCard, setMyBeerCard] = useState(false);
+  const [selectedBeer, setSelectedBeer] = useState({});
+
   const handleOpenModal = () => {
     setExchangeModal(true);
   };
@@ -11,7 +17,20 @@ function BeerCard({ photo, style, abv, date, description, location }) {
     setExchangeModal(false);
   };
 
-  console.log(description);
+  // const handleOpenBeerCard = (birra) => {
+  //   setMyBeerCard(true);
+  // };
+
+  const handleSelectedBeer = (birra) => {
+    setSelectedBeer(birra);
+    setMyBeerCard(true);
+    console.log(selectedBeer);
+  };
+
+  const handleCloseBeerCard = () => {
+    setMyBeerCard(false);
+  };
+
   const words = description?.split(" ");
   const truncatedWords = words?.slice(0, 20);
   const truncateText = truncatedWords?.join(" ");
@@ -67,7 +86,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                     <div>
                       {" "}
                       <img
-                        src={`${process.env.SUPABASE_URL}${photo}`}
+                        src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                         alt=""
                         className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
                       />
@@ -87,35 +106,82 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                       </p>
                     </div>
                   </div>
-
-                  <div className="relative p-6 flex-auto grid grid-cols-2 md:grid-cols-1">
-                    <div>
-                      <img
-                        src={smoked}
-                        alt=""
-                        className="h-[200px] md:h-[300px] w-[170px]   md:w-[250px] mx-auto rounded-t"
-                      />
+                  {!myBeerCard ? (
+                    <div className="mt-6">
+                      {user.beers.length > 0 ? (
+                        <div>
+                          <h2 className="text-lg font-semibold mb-4">
+                            Seleccionar birra para intercambio
+                          </h2>
+                          {user.beers.map((birra) => (
+                            <div
+                              key={birra.id}
+                              onClick={() => handleSelectedBeer(birra)}
+                            >
+                              <ExchangeCards
+                                key={birra.id}
+                                photo={birra.photo}
+                                style={birra.style}
+                                abv={birra.abv}
+                                description={birra.description}
+                                date={birra.brewDate}
+                                location={birra.location}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="mt-36">
+                          <h2 className="mb-2  text-md font-semibold text-red-600  mx-auto">
+                            No tienes birras disponibles para intercambio
+                          </h2>
+                        </div>
+                      )}
                     </div>
-                    <div className="ms-2 ">
-                      <h2 className="mt-2 text-md md:text-lg font-semibold">
-                        Smoked Wheat - 4.2%
-                      </h2>
-
-                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
-                        {adjustedDescription}
-                      </p>
-                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
-                        {description}
-                      </p>
-                      <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
-                        Elaborado en: Montevideo, Aguada el 10/10/2022
-                      </p>
+                  ) : (
+                    <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 ">
+                      <div>
+                        <img
+                          src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${selectedBeer.photo}`}
+                          alt=""
+                          className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
+                        />
+                      </div>
+                      <div className="ms-2">
+                        <h2 className="mt-2 text-md lg:text-lg font-semibold">
+                          {selectedBeer.style} - {selectedBeer.abv}%
+                        </h2>{" "}
+                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
+                          {adjustedDescription}
+                        </p>
+                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[50px] leading-5">
+                          {selectedBeer.description}
+                        </p>
+                        <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
+                          Elaborado en: {selectedBeer.location} el{" "}
+                          {selectedBeer.brewDate}
+                        </p>
+                        <button
+                          onClick={handleCloseBeerCard}
+                          className="px-2 py-1 bg-black text-white  rounded"
+                        >
+                          volver
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
-                <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
-                  Intercambiar
-                </button>
+                {user.beers.length > 0 ? (
+                  <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
+                    Intercambiar
+                  </button>
+                ) : (
+                  <Link to="/birra-form">
+                    <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
+                      Subir nueva birra
+                    </button>
+                  </Link>
+                )}
               </div>
               {/* </div> */}
             </div>

@@ -9,8 +9,8 @@ function BeerCardPreview({ photo, style, abv, date, description, location }) {
         <h4 className="text-xl font-semibold mt-2">
           {style} - {abv}%
         </h4>
-        <h6 className="text-xs font-">Fecha de elaboración {date}</h6>
-        <h4>{location}</h4>
+        <h6 className="text-xs mt-1 ">Fecha de elaboración {date}</h6>
+        <h4 className="text-xs mt-1">{location}</h4>
         <h5 className="text-xs text-start mx-6 mt-2 truncate">{description}</h5>
       </div>
     </div>
