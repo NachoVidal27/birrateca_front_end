@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { edit } from "../redux/userReducer";
+import SmallerBeerCard from "../components/SmallerBeerCard";
 
 function Profile() {
   const user = useSelector((state) => state.user);
+  console.log(user.beers);
   const [name, setName] = useState(user.name);
   const [memberId, setMemberId] = useState(user.memberId);
   const [phone, setPhone] = useState(user.phone);
@@ -44,7 +46,7 @@ function Profile() {
     try {
       const response = await axios({
         method: "patch",
-        url: `http://localhost:8000/users/${user.id}`,
+        url: `${process.env.REACT_APP_API_URL}/users/${user.id}`,
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -64,12 +66,16 @@ function Profile() {
   };
 
   return (
-    <div className="mt-24 h-[90vh]">
+    <div className="mt-24 h-[150vh] mb-36">
       <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
       <h3 className="text-xl font-semibold mt-1">Aqui podrás editar la información de tu cuenta</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-12 mx-6 gap-4">
         <div className="h-80 w-[70%] mx-auto">
+<<<<<<< Updated upstream
           <h2 className="text-2xl font-semibold mb-8">Información de usuario</h2>
+=======
+          <h2 className="text-xl font-semibold mb-6">Información de usuario</h2>
+>>>>>>> Stashed changes
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 my-3 mx-4">
               <label htmlFor="name" className="text-start text-lg font-semibold">
@@ -107,8 +113,21 @@ function Profile() {
             <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-4 rounded text-md text-white">Confirmar cambios</button>
           </form>
         </div>
-        <div className="bg-blue-200 h-60">
-          <h2 className="text-lg font-semibold">Tus birras</h2>
+        <div className="h-60 grid  gap-0.5">
+          <h2 className="text-xl font-semibold mb-6">Tus birras</h2>
+          <div className="flex align-center justify-between">
+            {user.beers.map((birra) => (
+              <SmallerBeerCard
+                key={birra.id}
+                photo={birra.photo}
+                style={birra.style}
+                abv={birra.abv}
+                description={birra.description}
+                date={birra.brewDate}
+                location={birra.location}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

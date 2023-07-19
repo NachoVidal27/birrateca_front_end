@@ -77,7 +77,6 @@ function AddBeer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("userId", user._id);
     formData.append("style", newBeer.style);
     formData.append("description", newBeer.description);
     formData.append("abv", newBeer.abv);
@@ -88,6 +87,7 @@ function AddBeer() {
     const response = await axios({
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${user.token}`,
       },
       method: "post",
       url: "http://localhost:8000/beers",

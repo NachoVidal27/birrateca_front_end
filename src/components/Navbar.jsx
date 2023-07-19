@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logOut } from "../redux/userReducer";
@@ -6,7 +6,6 @@ import logo from "../assets/logoBirrateca.png";
 
 function Navbar() {
   const user = useSelector((state) => state.user);
-  const [menuName, setMenuName] = useState("menu");
 
   const dispatch = useDispatch();
 
@@ -28,23 +27,23 @@ function Navbar() {
     dispatch(logOut());
   }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.getElementById("navbarTitle");
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const navbar = document.getElementById("navbarTitle");
 
-      if (window.pageYOffset > 0) {
-        navbar.classList.add("scale-[75%]");
-      } else {
-        navbar.classList.remove("scale-[75%]");
-      }
-    };
+  //     if (window.pageYOffset > 0) {
+  //       navbar.classList.add("scale-[75%]");
+  //     } else {
+  //       navbar.classList.remove("scale-[75%]");
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -88,10 +87,7 @@ function Navbar() {
             />
           </Link>
         </div>
-        <span
-          id="navbarTitle"
-          className=" font-bold text-white   cursor-pointer mx-4"
-        >
+        <span className=" font-bold text-white   cursor-pointer mx-4">
           {!user ? (
             <ul className="flex">
               {" "}

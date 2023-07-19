@@ -43,39 +43,39 @@ function Login() {
   };
 
   return (
-    <div className="mt-20 h-[60vh]">
-      <h2 className="text-2xl font-bold">Login?</h2>
+    <div className="mt-24 h-[80vh] ">
+      <h2 className="text-2xl font-bold mb-4">Login</h2>
 
       <form action="" onSubmit={handleLogin}>
-        <div className="">
-          <label htmlFor="memberId ">Member ID</label>
+        <div className="flex justify-center py-2">
+          <label htmlFor="memberId ">ID socio</label>
           <input
             type="string"
             name="memberId"
             id="memberId"
-            className="border-2 mt-4 ms-2"
+            className="border-2 ms-8"
             onChange={handleMemberId}
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="flex justify-center py-2">
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             name="password"
             id="password"
-            className="border-2 mt-4 ms-4"
+            className="border-2  ms-3"
             onChange={handlePassword}
           />
         </div>
-        <button className="px-4 py-1  bg-cream-dark border-2  text-l rounded font-semibold mt-4">
+        <button className="px-4 py-1  bg-black text-white border-1  text-l rounded-[12%] font-semibold mt-4 hover:bg-cream-dark">
           Login
         </button>
         <br />
-        <Link to="/signup">
+        {/* <Link to="/signup">
           <button className="px-2 py-1 bg-cream-light border-2 text-l rounded font-semibold mt-2">
             Sign Up
           </button>
-        </Link>
+        </Link> */}
       </form>
     </div>
   );
