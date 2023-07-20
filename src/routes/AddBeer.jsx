@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import BeerCardPreview from "../components/BeerCardPreview";
 import axios from "axios";
 import { create } from "../redux/beerReducer";
+import { newUserBeer } from "../redux/userReducer";
 // import { getAllBeers } from "../services/getAllBeers";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -62,7 +63,7 @@ function AddBeer() {
 
   const handlePhoto = (e) => {
     const photo = e.target.files[0];
-    console.log(photo);
+
     setNewBeer({ ...newBeer, photo: photo });
   };
 
@@ -94,6 +95,7 @@ function AddBeer() {
       data: formData,
     });
     dispatch(create(response.data));
+    dispatch(newUserBeer(response.data));
     navigate("/birras", { replace: true });
   };
 

@@ -21,8 +21,11 @@ const userSlice = createSlice({
     logOut(state, action) {
       return null;
     },
+    newUserBeer(state, action) {
+      state.beers = [...state.beers, action.payload];
+    },
   },
 });
 
-export const { login, logOut, edit, create } = userSlice.actions;
+export const { login, logOut, edit, create, newUserBeer } = userSlice.actions;
 export default userSlice.reducer;

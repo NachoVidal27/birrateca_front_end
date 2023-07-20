@@ -1,9 +1,9 @@
 import React from "react";
 
-function SmallerBeerCard({ photo, style, abv, date, description, location }) {
+function SmallerBeerCard({ style, abv, date, description }) {
   return (
     description && (
-      <div className="w-[80%] mx-auto bg-black h-fit rounded mb-4 px-6 py-4">
+      <div className="w-[70%] mx-auto bg-black h-fit rounded mb-4 px-6 py-4">
         <div className="flex justify-evenly">
           <h2 className="text-white font-semibold ">
             {style} {abv}%

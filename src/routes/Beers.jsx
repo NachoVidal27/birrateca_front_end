@@ -22,7 +22,7 @@ function Beers() {
         Nuestras birras
       </h2>
       <div className="w-[40%] border border-b-1 mx-auto mt-2 border-cream-dark opacity-40 mb-10"></div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-4 lg:gap-4 w-[80%] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-4 lg:gap-2 w-[80%] xl:w-[70%] mx-auto">
         {beers?.map((birra) => (
           <BeerCard
             key={birra.id}

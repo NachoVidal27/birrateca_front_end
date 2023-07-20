@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ExchangeCards from "./ExchangeCards";
 import { Link } from "react-router-dom";
+import WestIcon from "@mui/icons-material/West";
 
 function BeerCard({ photo, style, abv, date, description, location }) {
   const user = useSelector((state) => state.user);
@@ -84,15 +85,14 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 ">
                   <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 ">
                     <div>
-                      {" "}
                       <img
                         src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                         alt=""
                         className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
                       />
                     </div>
-                    <div className="ms-2">
-                      <h2 className="mt-2 text-md lg:text-lg font-semibold">
+                    <div className="ms-2 mt-3">
+                      <h2 className="text-md lg:text-lg font-semibold">
                         {style} - {abv}%
                       </h2>{" "}
                       <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
@@ -139,34 +139,37 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                       )}
                     </div>
                   ) : (
-                    <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 ">
-                      <div>
+                    <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 h-[300px] ">
+                      <div className="relative">
+                        <p className="absolute top-0 left-11 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
+                          <WestIcon onClick={handleCloseBeerCard} />
+                        </p>
                         <img
                           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${selectedBeer.photo}`}
                           alt=""
-                          className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
+                          className="h-[200px] md:h-[300px] w-[170px] md:w-[250px] mx-auto rounded-t static"
                         />
                       </div>
-                      <div className="ms-2">
-                        <h2 className="mt-2 text-md lg:text-lg font-semibold">
+                      <div className="ms-2 mt-3">
+                        <h2 className=" text-md lg:text-lg font-semibold">
                           {selectedBeer.style} - {selectedBeer.abv}%
                         </h2>{" "}
                         <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
                           {adjustedDescription}
                         </p>
-                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[50px] leading-5">
+                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
                           {selectedBeer.description}
                         </p>
                         <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
                           Elaborado en: {selectedBeer.location} el{" "}
                           {selectedBeer.brewDate}
                         </p>
-                        <button
+                        {/* <button
                           onClick={handleCloseBeerCard}
                           className="px-2 py-1 bg-black text-white  rounded"
                         >
                           volver
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   )}

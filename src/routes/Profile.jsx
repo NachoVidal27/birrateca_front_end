@@ -148,7 +148,7 @@ function Profile() {
             </button>
           </form>
         </div>
-        <div className="h-60 grid  gap-0.5">
+        <div className="">
           <h2 className="text-xl font-semibold mb-6">Tus birras</h2>
           <div className="">
             {user.beers.map((birra) => (
