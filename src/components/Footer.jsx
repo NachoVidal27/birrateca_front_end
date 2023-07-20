@@ -1,25 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 function Footer() {
   return (
     <div className="bg-black w-full ">
       <div className="h-fit md:h-60 w-[80%] bg-black bottom-0 mx-auto pt-6">
         <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="my-4 md:my-0">
+          <div className="my-4 md:my-0 mx-auto">
             <h3 className="text-white font-roboto text-xl md:border-b-2 w-[40%] mx-auto pb-2 md:mb-4">
               Redes
             </h3>
-            <Link>
-              <h4 className="text-white text-sm my-1">Instagram CCCUY</h4>
-            </Link>
-            <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
-              <h4 className="text-white text-sm my-1">Facebook CCCUY</h4>
-            </Link>
+            <div className="flex flex-col items-start mx-auto">
+              <Link>
+                <div className="text-white text-sm my-1 ">
+                  <InstagramIcon className="mr-1 " />
+                  Instagram CCCUY
+                </div>
+              </Link>
+              <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
+                <div className="flex justify-center text-white text-sm my-1">
+                  <FacebookRoundedIcon className="mr-1 " />
+                  Facebook CCCUY
+                </div>
+              </Link>
 
-            <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
-              <h4 className="text-white text-sm my-1">Instagram Birrateca</h4>
-            </Link>
+              <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
+                <div className="flex justify-center text-white text-sm my-1">
+                  <InstagramIcon className="mr-1 " />
+                  Instagram Birrateca
+                </div>
+              </Link>
+            </div>
           </div>
           <div className="my-4 md:my-0">
             <Link to="https://www.cerveceroscaseros.com.uy/hagase-socio-del-club/">
