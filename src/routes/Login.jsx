@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/userReducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Login() {
   const [memberId, setMemberId] = useState("");
@@ -44,38 +44,35 @@ function Login() {
 
   return (
     <div className="mt-24 h-[80vh] ">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
-
+      <h2 className="text-2xl font-bold mb-1">Iniciar sesión</h2>
       <form action="" onSubmit={handleLogin}>
-        <div className="flex justify-center py-2">
-          <label htmlFor="memberId ">ID socio</label>
+        <div className="flex flex-col mt-2">
+          <label htmlFor="memberId">ID socio</label>
           <input
             type="string"
             name="memberId"
             id="memberId"
-            className="border-2 ms-8"
+            className="border-2 w-[50%] mx-auto mt-1"
             onChange={handleMemberId}
           />
         </div>
-        <div className="flex justify-center py-2">
+        <div className="flex flex-col mt-2">
           <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             name="password"
             id="password"
-            className="border-2  ms-3"
+            className="border-2 w-[50%] mx-auto mt-1"
             onChange={handlePassword}
           />
         </div>
-        <button className="px-4 py-1  bg-black text-white border-1  text-l rounded-[12%] font-semibold mt-4 hover:bg-cream-dark">
-          Login
+
+        <button className="px-4 py-1 block mx-auto bg-black text-white border-1  w-28 font-semibold mt-4 rounded">
+          Ingresar
         </button>
-        <br />
-        {/* <Link to="/signup">
-          <button className="px-2 py-1 bg-cream-light border-2 text-l rounded font-semibold mt-2">
-            Sign Up
-          </button>
-        </Link> */}
+        <button className="px-4 py-1 block mx-auto bg-cream-dark text-white border-1 w-28  font-semibold mt-2 rounded">
+          Registrarse
+        </button>
       </form>
     </div>
   );

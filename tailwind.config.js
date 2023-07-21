@@ -12,6 +12,7 @@ module.exports = {
       },
       fontFamily: {
         roboto: ["Roboto Condensed"],
+        title: ["Ysabeau SC"],
       },
     },
   },

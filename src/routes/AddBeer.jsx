@@ -196,7 +196,7 @@ function AddBeer() {
             <div></div>
             <Link to="/tips">
               <div className="border border-black rounded bg-black mx-2 roundeed my-1 py-1 hover:bg-cream-dark">
-                <h2 className="text-white text-sm  hover:text-black ">
+                <h2 className="text-white text-sm  hover:text-black  ">
                   tips para fotografías
                 </h2>
               </div>

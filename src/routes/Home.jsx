@@ -3,7 +3,6 @@ import barril from "../assets/barrilHero.jpeg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
 import beerFromTop from "../assets/beer_transparent.png";
-import Loader from "../components/Loader";
 
 function Home() {
   return (
@@ -11,7 +10,7 @@ function Home() {
       <div class="relative">
         <img src={barril} className="w-full" alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
-          <h2 class="invisible md:visible text-5xl font-bold text-white text-center">
+          <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
           </h2>
         </div>

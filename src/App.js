@@ -5,7 +5,7 @@ import Beers from "./routes/Beers";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./routes/SignUp";
 import Home from "./routes/Home";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import AddBeer from "./routes/AddBeer";
 import Login from "./routes/Login";
 import Footer from "./components/Footer";
@@ -14,6 +14,7 @@ import Profile from "./routes/Profile";
 import PhotoTips from "./routes/PhotoTips"; // import NoAuthRequire from "./hooks/NoAuthRequire";
 // import AuthRequire from "./hooks/AuthRequire";
 import Loader from "./components/Loader";
+import AlternativeNavbar from "./components/AlternativeNavbar";
 
 function App() {
   const [splash, setSplash] = useState(true);
@@ -29,7 +30,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <Navbar />
+        <AlternativeNavbar />
         <ScrollToTop>
           <Routes>
             {/* <Route element={<NoAuthRequire />}> */}

@@ -14,7 +14,7 @@ function Beers() {
     getAllBeers().then((data) => {
       dispatch(getAll(data));
     });
-  }, []);
+  });
 
   return (
     <div className="mt-16 mb-12">
