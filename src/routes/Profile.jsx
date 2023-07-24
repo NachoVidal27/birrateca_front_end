@@ -66,8 +66,10 @@ function Profile() {
 
   return (
     <div className="mt-28 h-[120vh] mb-36">
-      <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
-      <h3 className="text-xl font-semibold mt-1">
+      <h1 className="text-[2rem] font-bold font-roboto ">
+        Bienvenido {user.name}
+      </h1>
+      <h3 className="text-xl font-semibold mt-1 font-roboto">
         Aqui podrás editar la información de tu cuenta
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mx-6 gap-4">
@@ -149,7 +151,7 @@ function Profile() {
           </form>
         </div>
         <div className="">
-          <h2 className="text-xl font-semibold mb-6">Tus birras</h2>
+          <h2 className="text-2xl font-semibold mb-6">Tus birras</h2>
           <div className="">
             {user.beers.map((birra) => (
               <SmallerBeerCard

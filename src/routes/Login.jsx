@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/userReducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 function Login() {
@@ -70,9 +71,11 @@ function Login() {
         <button className="px-4 py-1 block mx-auto bg-black text-white border-1  w-28 font-semibold mt-4 rounded">
           Ingresar
         </button>
-        <button className="px-4 py-1 block mx-auto bg-cream-dark text-white border-1 w-28  font-semibold mt-2 rounded">
-          Registrarse
-        </button>
+        <Link to="/signup">
+          <button className="px-4 py-1 block mx-auto bg-cream-dark text-white border-1 w-28  font-semibold mt-2 rounded">
+            Registrarse
+          </button>
+        </Link>
       </form>
     </div>
   );
