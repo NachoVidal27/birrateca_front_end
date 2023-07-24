@@ -65,12 +65,12 @@ function Profile() {
   };
 
   return (
-    <div className="mt-24 h-[120vh] mb-36">
+    <div className="mt-28 h-[120vh] mb-36">
       <h1 className="text-3xl font-bold ">Bienvenido {user.name}</h1>
       <h3 className="text-xl font-semibold mt-1">
         Aqui podrás editar la información de tu cuenta
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-12 mx-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mx-6 gap-4">
         <div className="h-80 w-[70%] mx-auto">
           <h2 className="text-2xl font-semibold mb-8">
             Información de usuario
@@ -85,7 +85,7 @@ function Profile() {
               </label>
               <input
                 type="text"
-                className="border border-black rounded px-2"
+                className="border border-black rounded px-2 "
                 value={name}
                 onChange={handleName}
               />

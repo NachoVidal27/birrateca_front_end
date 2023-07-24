@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import logo from "../assets/logoBirrateca.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { logOut } from "../redux/userReducer";
 import { useDispatch } from "react-redux";
@@ -41,7 +41,7 @@ function AlternativeNavbar() {
   }
 
   return mobile ? (
-    <div className="top-0 z-50 fixed w-full ">
+    <div className="top-0 z-50 fixed w-full transition duration-500 ease-in-out transform translate-y-0">
       <nav className="p-0 h-20 bg-black shadow  md:items-center   ">
         <div className="flex justify-between px-3">
           <Link to="/">
@@ -87,7 +87,7 @@ function AlternativeNavbar() {
               <li className="mb-3" onClick={handleLogOut}>
                 <Link
                   to="/"
-                  className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium "
+                  className="text-lg text-white hover:text-red-500 opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium "
                 >
                   Cerrar Sesión
                 </Link>
@@ -98,7 +98,59 @@ function AlternativeNavbar() {
       ) : null}
     </div>
   ) : (
-    <nav className="p-0 h-16 bg-red-500 shadow md:flex md:items-center md:justify-center top-0 z-50 fixed  w-full "></nav>
+    <nav className="p-0 h-24 bg-black shadow md:flex justiy-center md:items-center  pe-6 top-0 z-50 fixed  w-full ">
+      {!user ? (
+        <div className="flex mx-auto">
+          <Link
+            className="text-white text-xl font-semibold my-auto me-4 opacity-90 hover:opacity-100"
+            to="/birras"
+          >
+            {" "}
+            Birras
+          </Link>
+          <Link to="/">
+            <img
+              src={logo}
+              className="h-20 mt-2  hover:brightness-150 "
+              alt="dos jarras chocando"
+            />{" "}
+          </Link>
+          <Link
+            className="text-white text-xl font-semibold my-auto ms-4 opacity-90 hover:opacity-100"
+            to="/login"
+          >
+            Login
+          </Link>
+        </div>
+      ) : (
+        <div className="mx-auto">
+          <ul className="flex">
+            <li className="text-white text-xl font-semibold my-auto me-4 opacity-90 hover:opacity-100">
+              <Link to="/birras">Catalogo</Link>
+            </li>
+            <li className="text-white text-xl font-semibold my-auto me-4 opacity-90 hover:opacity-100">
+              <Link to="birra-form">Nueva birra</Link>
+            </li>
+            <Link to="/">
+              <img
+                src={logo}
+                className="h-20 mt-2  hover:brightness-150 "
+                alt="dos jarras chocando"
+              />
+            </Link>
+            <li className="text-white text-xl font-semibold my-auto ms-4 opacity-90 hover:opacity-100">
+              <Link to="perfil">Perfil</Link>
+            </li>
+            <li
+              className="text-white text-xl font-semibold my-auto ms-4 opacity-90 hover:opacity-100 hover:text-red-500"
+              onClick={handleLogOut}
+            >
+              <Link to="/">Cerrar sesión</Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </nav>
   );
 }
 

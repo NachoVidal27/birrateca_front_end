@@ -52,7 +52,7 @@ function Login() {
             type="string"
             name="memberId"
             id="memberId"
-            className="border-2 w-[50%] mx-auto mt-1"
+            className="border-2 w-[50%] md:w-[20%] mx-auto mt-1"
             onChange={handleMemberId}
           />
         </div>
@@ -62,7 +62,7 @@ function Login() {
             type="password"
             name="password"
             id="password"
-            className="border-2 w-[50%] mx-auto mt-1"
+            className="border-2 w-[50%] md:w-[20%] mx-auto mt-1"
             onChange={handlePassword}
           />
         </div>
