@@ -100,7 +100,7 @@ function PhotoTips() {
         </h2>
         <div className="  mx-auto mb-20 ">
           <ul className="ms-6">
-            <li className="text-justify mb-2 list-disc md:text-lg md:font-semibold">
+            <li className="text-justify  list-disc md:text-lg md:font-semibold">
               Puedes utilizar accesorios como servilletas, posavasos o elementos
               relacionados con la cerveza para darle un toque más auténtico a la
               imagen.

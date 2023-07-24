@@ -44,7 +44,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
           <img
             src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
             alt=""
-            className="h-[300px] w-full mx-auto rounded-t "
+            className="h-[300px] w-full mx-auto rounded-t object-cover"
           />
           <div className="h-[150px]">
             <h4 className="text-lg font-semibold mt-2 mb-1">
@@ -88,7 +88,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                       <img
                         src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                         alt=""
-                        className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t"
+                        className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t object-cover"
                       />
                     </div>
                     <div className="ms-2 mt-3">
@@ -147,7 +147,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                         <img
                           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${selectedBeer.photo}`}
                           alt=""
-                          className="h-[200px] md:h-[300px] w-[170px] md:w-[250px] mx-auto rounded-t static"
+                          className="h-[200px] md:h-[300px] w-[170px] md:w-[250px] mx-auto rounded-t static object-cover"
                         />
                       </div>
                       <div className="ms-2 mt-3">
