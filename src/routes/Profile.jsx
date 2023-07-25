@@ -65,7 +65,7 @@ function Profile() {
   };
 
   return (
-    <div className="mt-28 h-[120vh] mb-36">
+    <div className="mt-28 h-fit mb-36">
       <h1 className="text-[2rem] font-bold font-roboto ">
         Bienvenido {user.name}
       </h1>
@@ -151,7 +151,12 @@ function Profile() {
           </form>
         </div>
         <div className="">
-          <h2 className="text-2xl font-semibold mb-6">Tus birras</h2>
+          {user.beers.lenght > 1 ? (
+            <h2 className="text-2xl font-semibold mt-14 md:mt-0 mb-6">
+              Tus birras
+            </h2>
+          ) : null}
+
           <div className="">
             {user.beers.map((birra) => (
               <SmallerBeerCard
