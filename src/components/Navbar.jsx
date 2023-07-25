@@ -84,6 +84,14 @@ function Navbar() {
                   Nueva birra
                 </Link>
               </li>
+              <li className="mb-3" onClick={handleToggle}>
+                <Link
+                  to="/perfil"
+                  className="text-lg text-white opacity-70 hover:opacity-100   duration-300 cursor-pointer font-medium"
+                >
+                  Perfil {user.name}
+                </Link>
+              </li>
               <li className="mb-3" onClick={handleLogOut}>
                 <Link
                   to="/"
