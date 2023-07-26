@@ -1,12 +1,30 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import barril from "../assets/barrilHero.jpeg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
 import beerFromTop from "../assets/beer_transparent.png";
 
 function Home() {
-  return (
-    <div class="">
+  const [mobile, setMobile] = useState(true);
+
+  const handleResize = () => {
+    if (window.innerWidth > 768) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+  return mobile ? (
+    <>
       <div class="relative">
         <img src={barril} className="w-full" alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
@@ -15,35 +33,112 @@ function Home() {
           </h2>
         </div>
       </div>
-
-      <div className="mt-4 2xl:mt-10 mx-10  mb-16 2xl:mx-20">
-        <h3 className="text-2xl md:text-3xl font-bold font-roboto">
-          Proyecto Birrateca
-        </h3>
-        <p
-          className=" text-md md:text-xl w-[85%] md:w-[55%] mx-auto mt-2 font-roboto 
-        "
-        >
-          Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
-          artesanal y el intercambio de sabores únicos. En nuestra página de
-          socios de cerveza artesanal, te invitamos a sumergirte en un mundo de
-          aromas y sabores, donde la pasión por la cerveza se combina con la
-          emoción del intercambio.
-        </p>
-        <div className="w-[80%] border border-b-1 mx-auto mt-2 border-cream-dark opacity-60"></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-14  md:mx-10">
-          <div>
-            <img
-              src={beerFromTop}
-              className="h-[250px] md:h-[300px] lg:h-[450px] mx-auto ps-3 "
-              alt=""
-            />
-          </div>
-          <div className="mt-20">
-            <h3 className="text-2xl font-semibold  text-center md:text-start  mx-auto font-roboto">
-              Nuestro Objetivo
+      <div className="w-[80%] mx-auto">
+        <div>
+          <h2 className="font-roboto text-3xl font-semibold mt-4">
+            Proyecto Birrateca
+          </h2>
+          <p className="font-roboto mt-2">
+            Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
+            artesanal y el intercambio de sabores únicos. En nuestra página de
+            socios de cerveza artesanal, te invitamos a sumergirte en un mundo
+            de aromas y sabores, donde la pasión por la cerveza se combina con
+            la emoción del intercambio.
+          </p>
+        </div>
+        <div className="w-[80%] border border-b-1 mx-auto my-2 border-cream-dark opacity-60"></div>
+        <div>
+          <img
+            src={beerFromTop}
+            alt="cervecita espumosa"
+            className="h-[270px] ms-14 mt-10"
+          />
+          <h3 className="font-roboto text-2xl font-semibold">
+            Nuestro objetivo
+          </h3>
+          <p className="font-roboto mt-2">
+            Nuestra plataforma fue creada para conectar a cerveceros caseros,
+            aficionados y apasionados por la cerveza artesanal de todo el mundo.
+            Creemos en la diversidad de estilos y en la creatividad de cada
+            productor individual. Aquí, podrás descubrir nuevas cervezas
+            artesanales y compartir las tuyas con otros miembros de la
+            comunidad.
+          </p>
+        </div>
+        <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-30 "></div>
+        <div>
+          <img
+            src={cheers}
+            alt="cervecita espumosa"
+            className="h-[250px] mt-10 border rounded-full mx-auto  shadow-xl"
+          />
+          <h3 className="font-roboto text-2xl font-semibold mt-6">
+            Como funciona?
+          </h3>
+          <p className="font-roboto mt-2 ">
+            Es simple. Una vez que te unes a nuestra página de socios de cerveza
+            artesanal, tendrás acceso a un catálogo en constante expansión de
+            cervezas únicas y auténticas, elaboradas por personas apasionadas
+            que comparten su amor por la cerveza. Explora nuestra selección, lee
+            las descripciones detalladas y descubre qué cervezas te intrigarían
+            probar.
+          </p>
+        </div>
+        <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-30 "></div>
+        <div className="mb-20">
+          <img
+            src={cheer}
+            alt="cervecita espumosa"
+            className="h-[250px] mt-10 border rounded-full mx-auto  shadow-xl"
+          />
+          <h3 className="font-roboto text-2xl font-semibold mt-6">
+            El intercambio
+          </h3>
+          <p className="font-roboto mt-2">
+            Cuando encuentres una cerveza que despierte tu curiosidad,
+            simplemente solicita un intercambio con el socio elaborador. Deberás
+            ofrecer una de tus propias creaciones para intercambiar con otro
+            socio. El objetivo de esta comunidad es unir socios y mejorar la
+            calidad de cada cerveza con las devoluciones de los mismos.
+          </p>
+        </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <div class="relative">
+        <img src={barril} className="w-full" alt="" />
+        <div class="absolute inset-0 flex items-center justify-center">
+          <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
+            Bienvenido a la Birrateca del CCCUY
+          </h2>
+        </div>
+      </div>
+      <div className="w-[70%] 2xl:w-[65%] mx-auto">
+        <div className="mt-6">
+          <h2 className="font-roboto text-3xl 2xl:text-4xl font-semibold mt-4 2xl:mt-6">
+            Proyecto Birrateca
+          </h2>
+          <p className="font-roboto mt-2 text-xl">
+            Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
+            artesanal y el intercambio de sabores únicos. En nuestra página de
+            socios de cerveza artesanal, te invitamos a sumergirte en un mundo
+            de aromas y sabores, donde la pasión por la cerveza se combina con
+            la emoción del intercambio.
+          </p>
+        </div>
+        <div className="w-[80%] border border-b-1 mx-auto my-4 border-cream-dark opacity-60"></div>
+        <div className="flex space-evenly">
+          <img
+            src={beerFromTop}
+            alt="cervecita espumosa"
+            className="h-[410px]  mt-10"
+          />
+          <div className="my-auto ms-20 2xl:ms-40">
+            <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
+              Nuestro objetivo
             </h3>
-            <p className="text-md  md:text-xl md:text-start mt-2 md:w-[80%] font-roboto ">
+            <p className="font-roboto text-lg mt-2 text-start pe-10">
               Nuestra plataforma fue creada para conectar a cerveceros caseros,
               aficionados y apasionados por la cerveza artesanal de todo el
               mundo. Creemos en la diversidad de estilos y en la creatividad de
@@ -53,53 +148,39 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[40%] border border-b-1 mx-auto mt-8 border-cream-dark opacity-30 "></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-14  md:mx-10">
-          <div className=" mt-20">
-            <div>
-              <img
-                src={cheers}
-                className="h-[250px]  border rounded-full mx-auto  shadow-xl md:hidden "
-                alt=""
-              />
-            </div>
-            <div className="md:ms-16 2xl:ms-36">
-              <h3 className="text-2xl font-semibold text-center md:text-start  mx-auto  2xl:ms-10 font-roboto mt-10">
-                Como funciona?
-              </h3>
-              <p className="text-md md:text-xl text-center md:text-start mt-2 md:w-[85%] 2xl:ms-10 font-roboto">
-                Es simple. Una vez que te unes a nuestra página de socios de
-                cerveza artesanal, tendrás acceso a un catálogo en constante
-                expansión de cervezas únicas y auténticas, elaboradas por
-                personas apasionadas que comparten su amor por la cerveza.
-                Explora nuestra selección, lee las descripciones detalladas y
-                descubre qué cervezas te intrigarían probar.
-              </p>
-            </div>
+        <div className="w-[40%] border border-b-1 mx-auto my-2 border-cream-dark opacity-20 "></div>
+        <div className="flex space-evenly">
+          <div className="my-auto me-20 2xl:me-40">
+            <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
+              Como funciona?
+            </h3>
+            <p className="font-roboto text-lg mt-2 text-start pe-10">
+              Es simple. Una vez que te unes a nuestra página de socios de
+              cerveza artesanal, tendrás acceso a un catálogo en constante
+              expansión de cervezas únicas y auténticas, elaboradas por personas
+              apasionadas que comparten su amor por la cerveza. Explora nuestra
+              selección, lee las descripciones detalladas y descubre qué
+              cervezas te intrigarían probar.
+            </p>
           </div>
-
-          <div>
-            <img
-              src={cheers}
-              className=" h-0 md:h-[450px]  border rounded-full md:ms-8 2xl:ms-48 shadow-xl invisible md:visible"
-              alt=""
-            />
-          </div>
+          <img
+            src={cheers}
+            alt="cervecita espumosa"
+            className="h-[400px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
+          />
         </div>
-        <div className="w-[40%] border border-b-1 mx-auto mt-8 border-cream-dark opacity-30 "></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-14 md:mx-12">
-          <div>
-            <img
-              src={cheer}
-              className="h-[250px] md:h-[300px] lg:h-[450px]  rounded-full  mx-auto "
-              alt=""
-            />
-          </div>
-          <div className="mt-20 ">
-            <h3 className="text-2xl font-semibold md:text-start  mx-auto font-roboto">
+        <div className="w-[40%] border border-b-1 mx-auto my-2 border-cream-dark opacity-20 "></div>
+        <div className="flex space-evenly mb-20 2xl:mb-24">
+          <img
+            src={cheer}
+            alt="cervecita espumosa"
+            className="h-[400px] mt-10 border rounded-full mx-auto shadow-[12px_13px_35px_5px_#00000024]"
+          />
+          <div className="my-auto ms-20 2xl:ms-40">
+            <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
               El intercambio
             </h3>
-            <p className="text-md md:text-xl text-center md:text-start mt-2 md:w-[80%] font-roboto">
+            <p className="font-roboto text-lg mt-2 text-start pe-10">
               Cuando encuentres una cerveza que despierte tu curiosidad,
               simplemente solicita un intercambio con el socio elaborador.
               Deberás ofrecer una de tus propias creaciones para intercambiar
@@ -110,7 +191,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
