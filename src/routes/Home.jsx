@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import barril from "../assets/barrilHero.jpeg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
-import beerFromTop from "../assets/beer_transparent.png";
+import beerFromTop from "../assets/top-glass.png";
 
 function Home() {
   const [mobile, setMobile] = useState(true);
@@ -26,7 +26,7 @@ function Home() {
   return mobile ? (
     <>
       <div class="relative">
-        <img src={barril} className="w-full" alt="" />
+        <img src={barril} className="w-full  " alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
@@ -51,9 +51,9 @@ function Home() {
           <img
             src={beerFromTop}
             alt="cervecita espumosa"
-            className="h-[270px] ms-14 mt-10"
+            className="h-[270px] rounded-full mx-auto mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           />
-          <h3 className="font-roboto text-2xl font-semibold">
+          <h3 className="font-roboto text-2xl font-semibold mt-6">
             Nuestro objetivo
           </h3>
           <p className="font-roboto mt-2">
@@ -70,7 +70,7 @@ function Home() {
           <img
             src={cheers}
             alt="cervecita espumosa"
-            className="h-[250px] mt-10 border rounded-full mx-auto  shadow-xl"
+            className="h-[250px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <h3 className="font-roboto text-2xl font-semibold mt-6">
             Como funciona?
@@ -89,7 +89,7 @@ function Home() {
           <img
             src={cheer}
             alt="cervecita espumosa"
-            className="h-[250px] mt-10 border rounded-full mx-auto  shadow-xl"
+            className="h-[250px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <h3 className="font-roboto text-2xl font-semibold mt-6">
             El intercambio
@@ -107,7 +107,11 @@ function Home() {
   ) : (
     <>
       <div class="relative">
-        <img src={barril} className="w-full" alt="" />
+        <img
+          src={barril}
+          className="w-full shadow-[-12px_13px_35px_5px_#00000024]"
+          alt=""
+        />
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
@@ -132,7 +136,7 @@ function Home() {
           <img
             src={beerFromTop}
             alt="cervecita espumosa"
-            className="h-[410px]  mt-10"
+            className="h-[400px] rounded-full mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <div className="my-auto ms-20 2xl:ms-40">
             <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
@@ -148,7 +152,7 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="w-[40%] border border-b-1 mx-auto my-2 border-cream-dark opacity-20 "></div>
+        <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-20 "></div>
         <div className="flex space-evenly">
           <div className="my-auto me-20 2xl:me-40">
             <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
@@ -169,7 +173,7 @@ function Home() {
             className="h-[400px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
           />
         </div>
-        <div className="w-[40%] border border-b-1 mx-auto my-2 border-cream-dark opacity-20 "></div>
+        <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-20 "></div>
         <div className="flex space-evenly mb-20 2xl:mb-24">
           <img
             src={cheer}
