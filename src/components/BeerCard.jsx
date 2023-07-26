@@ -68,7 +68,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
         </div>
         {exchangeModal ? (
           <>
-            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none max-w-3xl mx-auto">
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none max-w-3xl mx-auto ">
               {/* <div className="relative w-auto my-6 mx-auto max-w-3xl"> */}
               <div className="border-0 rounded-lg shadow-lg relative grid grid-cols-1 w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-center text-center justify-between p-5 border-b border-solid border-slate-200 rounded-t mb-2">
@@ -101,7 +101,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                       <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
                         {description}
                       </p>
-                      <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
+                      <p className="mt-2 md:mt-6 text-sm md:text-md invisible md:visible font-semibold">
                         Elaborado en: {location} el {date}
                       </p>
                     </div>
@@ -160,7 +160,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                         <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
                           {selectedBeer.description}
                         </p>
-                        <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold">
+                        <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold invisible md:visible">
                           Elaborado en: {selectedBeer.location} el{" "}
                           {selectedBeer.brewDate}
                         </p>

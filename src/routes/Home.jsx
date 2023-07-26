@@ -51,7 +51,7 @@ function Home() {
           <img
             src={beerFromTop}
             alt="cervecita espumosa"
-            className="h-[270px] rounded-full mx-auto mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
+            className="h-[250px] rounded-full mx-auto mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <h3 className="font-roboto text-2xl font-semibold mt-6">
             Nuestro objetivo

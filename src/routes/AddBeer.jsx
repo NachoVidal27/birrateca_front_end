@@ -22,6 +22,7 @@ function AddBeer() {
     brewDate: "",
     memberId: "",
   });
+  const [charCount, setCharCount] = useState(80);
 
   const navigate = useNavigate();
 
@@ -52,7 +53,15 @@ function AddBeer() {
   const handleDescription = (e) => {
     const description = e.target.value;
 
-    setNewBeer({ ...newBeer, description: description });
+    // Verificar si la longitud del texto ingresado supera el límite
+    if (description.length <= 120) {
+      setNewBeer({ ...newBeer, description });
+      setCharCount(120 - description.length);
+    } else {
+      // Si supera el límite, truncar el texto para que tenga solo 120 caracteres
+      setNewBeer({ ...newBeer, description: description.slice(0, 120) });
+      setCharCount(0);
+    }
   };
 
   const handleAbv = (e) => {
@@ -68,12 +77,6 @@ function AddBeer() {
   };
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   getAllBeers().then((data) => {
-  //     setBeers(data);
-  //   });
-  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,29 +97,10 @@ function AddBeer() {
       url: `${process.env.REACT_APP_API_URL}/beers`,
       data: formData,
     });
+    navigate("/birras", { replace: true });
     dispatch(create(response.data));
     dispatch(newUserBeer(response.data));
-    navigate("/birras", { replace: true });
   };
-
-  // const beerToAdd = {
-  //   beerId: beer.length + 1,
-  //   style: newBeer.style,
-  //   description: newBeer.description,
-  //   abv: newBeer.abv,
-  //   photo: newBeer.photo,
-  //   brewDate: newBeer.brewDate,
-  //   memberId: newBeer.memberId,
-  //   location: newBeer.location,
-  // };
-  /* LA LINEA CORRECTA DEBE SER 
-        setBeer([...beer, beerToAdd]);
-
-        eliminamos el ...beer para que no renderice el objeto vacio
-    */
-  // setBeer([beerToAdd]);
-  // setNewBeer("");
-  // console.log(newBeer);
 
   return (
     <>
@@ -228,9 +212,15 @@ function AddBeer() {
                 type="text"
                 onChange={handleDescription}
                 value={newBeer.description}
-                maxLength={160}
+                maxLength={120}
               />
+              <div></div>
+              <small className={charCount < 20 ? "text-red-500" : null}>
+                {" "}
+                Palabras restantes: {charCount}
+              </small>
             </div>
+
             <div></div>
             <div className="">
               {" "}
