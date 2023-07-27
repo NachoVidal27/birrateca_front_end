@@ -9,6 +9,7 @@ import { newUserBeer } from "../redux/userReducer";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { ToastContainer, toast } from "react-toastify";
 
 function AddBeer() {
   const user = useSelector((state) => state.user);
@@ -22,7 +23,7 @@ function AddBeer() {
     brewDate: "",
     memberId: "",
   });
-  const [charCount, setCharCount] = useState(80);
+  const [charCount, setCharCount] = useState(120);
 
   const navigate = useNavigate();
 
@@ -78,6 +79,13 @@ function AddBeer() {
 
   const dispatch = useDispatch();
 
+  const notify = () => {
+    toast.success("Birra enviada", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -97,6 +105,7 @@ function AddBeer() {
       url: `${process.env.REACT_APP_API_URL}/beers`,
       data: formData,
     });
+
     navigate("/birras", { replace: true });
     dispatch(create(response.data));
     dispatch(newUserBeer(response.data));
@@ -223,10 +232,13 @@ function AddBeer() {
 
             <div></div>
             <div className="">
-              {" "}
-              <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
+              <button
+                className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end"
+                onClick={notify}
+              >
                 Guardar
               </button>
+              <ToastContainer />
             </div>
           </form>
         </div>
