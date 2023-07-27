@@ -141,7 +141,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                   ) : (
                     <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 h-[300px] ">
                       <div className="relative">
-                        <p className="absolute top-0 left-11 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
+                        <p className="absolute top-0 left-0 md:left-11 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
                           <WestIcon onClick={handleCloseBeerCard} />
                         </p>
                         <img
