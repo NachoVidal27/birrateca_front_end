@@ -33,7 +33,6 @@ function Login() {
       });
       dispatch(login(response.data.user));
       if (response.data.user.token) {
-        console.log(response.data.user.token);
         navigate("/birras");
       } else {
         console.log("no funcionó el login");

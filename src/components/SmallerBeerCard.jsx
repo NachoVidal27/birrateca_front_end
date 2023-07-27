@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function SmallerBeerCard({ style, abv, date, description }) {
+function SmallerBeerCard({ id, style, abv, date, description }) {
   return (
     description && (
       <div className="w-[70%] mx-auto bg-black h-fit rounded mb-4 px-6 py-4">
@@ -16,7 +17,7 @@ function SmallerBeerCard({ style, abv, date, description }) {
           <h2 className="text-white text-sm ">{description}</h2>
         </div>
         <button className="mx-auto border border-white px-2 py-1 mt-6 text-white rounded hover:bg-white  hover:text-black">
-          Editar
+          <Link to={`/${id}`}>Editar</Link>{" "}
         </button>
       </div>
     )

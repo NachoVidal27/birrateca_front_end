@@ -151,7 +151,7 @@ function Profile() {
           </form>
         </div>
         <div className="">
-          {user.beers.lenght > 1 ? (
+          {user.beers.length > 0 ? (
             <h2 className="text-2xl font-semibold mt-14 md:mt-0 mb-6">
               Tus birras
             </h2>
@@ -161,6 +161,7 @@ function Profile() {
             {user.beers.map((birra) => (
               <SmallerBeerCard
                 key={birra.id}
+                id={birra.id}
                 photo={birra.photo}
                 style={birra.style}
                 abv={birra.abv}

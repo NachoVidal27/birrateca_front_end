@@ -1,115 +1,69 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import BeerCardPreview from "../components/BeerCardPreview";
-import axios from "axios";
-import { create } from "../redux/beerReducer";
-import { newUserBeer } from "../redux/userReducer";
-// import { getAllBeers } from "../services/getAllBeers";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { ToastContainer, toast } from "react-toastify";
+import BeerCardPreview from "../components/BeerCardPreview";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import Spinner from "../components/Spinner";
 
-function AddBeer() {
-  const user = useSelector((state) => state.user);
-  const [newBeer, setNewBeer] = useState({
-    beerId: "",
-    style: "",
-    description: "",
-    location: "",
-    abv: "",
-    photo: "",
-    brewDate: "",
-    memberId: "",
-  });
-  const [charCount, setCharCount] = useState(120);
-
+function EditBeer() {
+  /* eslint-disable */
+  const [birra, setBirra] = useState(null);
+  // const [birraLoaded, setBirraLoaded] = useState(false);
+  // const [style, setStyle] = useState();
+  // const [abv, setAbv] = useState(null);
+  // const [location, setLocation] = useState(null);
+  // const [brewDate, setBrewDate] = useState(null);
+  // const [description, setDescription] = useState(null);
+  let { id } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleIngredients = (e) => {
-    const location = e.target.value;
-
-    setNewBeer({ ...newBeer, location: location });
-  };
-
-  const handleBrewDate = (e) => {
-    const brewDate = e.target.value;
-
-    setNewBeer({ ...newBeer, brewDate: brewDate });
-  };
+  /* eslint-disable */
+  const url = `${process.env.REACT_APP_API_URL}/beers/${id}`;
 
   const handleStyle = (e) => {
-    const style = e.target.value;
-
-    setNewBeer({ ...newBeer, style: style });
+    setBirra({ ...birra, style: e.target.value });
   };
-
-  const handleDescription = (e) => {
-    const description = e.target.value;
-
-    // Verificar si la longitud del texto ingresado supera el límite
-    if (description.length <= 120) {
-      setNewBeer({ ...newBeer, description });
-      setCharCount(120 - description.length);
-    } else {
-      // Si supera el límite, truncar el texto para que tenga solo 120 caracteres
-      setNewBeer({ ...newBeer, description: description.slice(0, 120) });
-      setCharCount(0);
-    }
-  };
-
   const handleAbv = (e) => {
-    const abv = e.target.value;
-
-    setNewBeer({ ...newBeer, abv: abv });
+    setBirra({ ...birra, abv: e.target.abv });
+  };
+  const handleLocation = (e) => {
+    setBirra({ ...birra, location: e.target.location });
+  };
+  const handleBrewDate = (e) => {
+    setBirra({ ...birra, brewDate: e.target.brewDate });
+  };
+  const handleDescription = (e) => {
+    setBirra({ ...birra, description: e.target.description });
   };
 
-  const handlePhoto = (e) => {
-    const photo = e.target.files[0];
+  useEffect(() => {
+    const getBirra = async () => {
+      const response = await axios({
+        method: "get",
+        url: url,
+      });
 
-    setNewBeer({ ...newBeer, photo: photo });
-  };
+      setBirra(response.data);
+    };
+    getBirra();
 
-  const dispatch = useDispatch();
+    console.log(birra);
+  }, [id]);
 
-  const notify = () => {
-    toast.success("Birra enviada", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 4000,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("style", newBeer.style);
-    formData.append("description", newBeer.description);
-    formData.append("abv", newBeer.abv);
-    formData.append("photo", newBeer.photo);
-    formData.append("brewDate", newBeer.brewDate);
-    formData.append("location", newBeer.location);
-
-    const response = await axios({
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${user.token}`,
-      },
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/beers`,
-      data: formData,
-    });
-
-    navigate("/birras", { replace: true });
-    dispatch(create(response.data));
-    dispatch(newUserBeer(response.data));
-  };
-
-  return (
+  return !birra ? (
+    <div className="h-[100vh]">
+      {" "}
+      <Spinner />
+    </div>
+  ) : (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[80vh]">
         <div className="md:mt-28">
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
               <label
                 htmlFor="style"
@@ -120,8 +74,9 @@ function AddBeer() {
               <input
                 className="border-2  mx-8 md:mx-2 roundeed"
                 type="text"
+                name="style"
+                defaultValue={birra.style}
                 onChange={handleStyle}
-                value={newBeer.style}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
@@ -134,8 +89,8 @@ function AddBeer() {
               <input
                 className="border-2  mx-8 md:mx-2 roundeed"
                 type="text"
+                defaultValue={birra.abv}
                 onChange={handleAbv}
-                value={newBeer.abv}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
@@ -148,11 +103,10 @@ function AddBeer() {
               <input
                 className="border-2 mx-8 md:mx-2 roundeed"
                 type="text"
-                onChange={handleIngredients}
-                value={newBeer.location}
+                defaultValue={birra.location}
+                onChange={handleLocation}
               />
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
               <label
                 htmlFor="photo"
@@ -160,11 +114,7 @@ function AddBeer() {
               >
                 Foto
               </label>
-              <input
-                className="border-2 mx-8 md:mx-2 roundeed"
-                type="file"
-                onChange={handlePhoto}
-              />
+              <input className="border-2 mx-8 md:mx-2 roundeed" type="file" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div></div>
@@ -186,8 +136,8 @@ function AddBeer() {
               <input
                 className="border-2 mx-8 md:mx-2 roundeed"
                 type="text"
+                defaultValue={birra.brewDate}
                 onChange={handleBrewDate}
-                value={newBeer.brewDate}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
@@ -200,39 +150,30 @@ function AddBeer() {
               <textarea
                 className="border-2 mx-8 md:mx-2 roundeed h-16 resize-none"
                 type="text"
+                defaultValue={birra.description}
                 onChange={handleDescription}
-                value={newBeer.description}
-                maxLength={120}
               />
               <div></div>
-              <small className={charCount < 20 ? "text-red-500" : null}>
-                {" "}
-                Palabras restantes: {charCount}
-              </small>
             </div>
 
             <div></div>
             <div className="">
-              <button
-                className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end"
-                onClick={notify}
-              >
+              <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
                 Guardar
               </button>
-              <ToastContainer />
             </div>
           </form>
         </div>
         <div className="invisible md:visible mt-20">
           <h3 className=" text-xl font-bold  mb-3">PREVIEW</h3>
           <BeerCardPreview
-            key={newBeer.id}
-            photo={newBeer.photo}
-            style={newBeer.style}
-            abv={newBeer.abv}
-            description={newBeer.description}
-            date={newBeer.brewDate}
-            location={newBeer.location}
+            // key={newBeer.id}
+            // photo={newBeer.photo}
+            style={birra.style}
+            // abv={newBeer.abv}
+            // description={newBeer.description}
+            // date={newBeer.brewDate}
+            // location={newBeer.location}
           />
         </div>
       </div>
@@ -240,4 +181,4 @@ function AddBeer() {
   );
 }
 
-export default AddBeer;
+export default EditBeer;

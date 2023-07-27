@@ -14,6 +14,7 @@ import PhotoTips from "./routes/PhotoTips";
 import AuthRequire from "./hooks/AuthRequire";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
+import EditBeer from "./routes/EditBeer";
 
 function App() {
   const [splash, setSplash] = useState(true);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route element={<AuthRequire />}>
+              <Route path="/:id" element={<EditBeer />} />
               <Route path="/tips" element={<PhotoTips />} />
               <Route path="/perfil" element={<Profile />} />
               <Route path="/birra-form" element={<AddBeer />} />
