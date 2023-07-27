@@ -155,7 +155,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                           {selectedBeer.style} - {selectedBeer.abv}%
                         </h2>{" "}
                         <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
-                          {adjustedDescription}
+                          {selectedBeer.description}
                         </p>
                         <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
                           {selectedBeer.description}
