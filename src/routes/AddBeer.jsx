@@ -82,7 +82,7 @@ function AddBeer() {
   const notify = () => {
     toast.success("Birra enviada", {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
+      autoClose: 4000,
     });
   };
 
