@@ -141,7 +141,7 @@ function SignUp() {
           </div>
           <div className="flex justify-center">
             <button className="px-4 py-1  bg-cream-light hover:bg-cream-dark border-2 text-l rounded mt-2 ">
-              Submit
+              Guardar
             </button>
           </div>
         </form>
