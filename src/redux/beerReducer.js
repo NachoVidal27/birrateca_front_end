@@ -9,21 +9,20 @@ const beerSlice = createSlice({
     getAll(state, action) {
       return action.payload;
     },
-    edit(state, action) {
-      state.beerId = action.payload.beerId;
-      state.style = action.payload.style;
-      state.description = action.payload.description;
-      state.ingredients = action.payload.ingredients;
-      state.abv = action.payload.abv;
-      state.photo = action.payload.photo;
-      state.brewDate = action.payload.brewDate;
-      state.memberId = action.payload.beerId;
+    editAllBeers(state, action) {
+      return state.map((beer) => {
+        if (beer.id === action.payload._id) {
+          return action.payload;
+        } else {
+          return beer;
+        }
+      });
     },
     create(state, action) {
-      return [...state, action.payload];
+      state.push(action.payload);
     },
   },
 });
 
-export const { create, edit, getAll } = beerSlice.actions;
+export const { create, editAllBeers, getAll } = beerSlice.actions;
 export default beerSlice.reducer;

@@ -7,6 +7,7 @@ import { getAll } from "../redux/beerReducer";
 
 function Beers() {
   const beers = useSelector((state) => state.beer);
+  console.log(beers);
 
   const dispatch = useDispatch();
 
@@ -16,8 +17,19 @@ function Beers() {
     });
   }, []);
 
-  return (
-    <div className="mt-20 mb-12 h-full">
+  return beers.length === 0 ? (
+    <div className="mt-20 mb-12 h-[60vh]">
+      <h2 className=" px-auto pt-8 text-[2rem] font-bold text-center font-roboto">
+        Nuestras birras
+      </h2>
+      <div className="w-[40%] border border-b-1 mx-auto mt-2 border-cream-dark opacity-40 mb-10"></div>
+
+      <h2 className="text-xl text-red-600">
+        Actualmente no hay birras disponibles para intercambio
+      </h2>
+    </div>
+  ) : (
+    <div className="mt-20 mb-12 h-fit">
       <h2 className=" px-auto pt-8 text-[2rem] font-bold text-center font-roboto">
         Nuestras birras
       </h2>
