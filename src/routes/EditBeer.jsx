@@ -56,7 +56,7 @@ function EditBeer() {
 
 
   const notifyMissingField = () => {
-    toast.error("Completa todos los campos antes de guardar", {
+    toast.warning("Asegurate de haber seleccionado una foto", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000,
     });
@@ -65,7 +65,7 @@ function EditBeer() {
   const notifySuccess = () => {
     toast.success("Birra editada correctamente", {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
+      autoClose: 6000,
     });
   };
 
