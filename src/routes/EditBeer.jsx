@@ -10,11 +10,13 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import { editAllBeers } from "../redux/beerReducer";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { ToastContainer, toast } from "react-toastify";
+
 
 function EditBeer() {
   const user = useSelector((state) => state.user);
   const [birra, setBirra] = useState(null);
-  const [formError, setFormError] = useState("");
+
   // const [birraLoaded, setBirraLoaded] = useState(false);
   // const [style, setStyle] = useState();
   // const [abv, setAbv] = useState(null);
@@ -43,10 +45,28 @@ function EditBeer() {
     setBirra({ ...birra, description: e.target.value });
   };
 
-  const handlePhoto = (e) => {
-    const photo = e.target.files[0];
 
+
+    const handlePhoto = (e) => {
+    const photo = e.target.files[0];
     setBirra({ ...birra, photo: photo });
+  };
+
+
+
+
+  const notifyMissingField = () => {
+    toast.error("Completa todos los campos antes de guardar", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
+  const notifySuccess = () => {
+    toast.success("Birra editada correctamente", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
   };
 
   useEffect(() => {
@@ -59,6 +79,7 @@ function EditBeer() {
       setBirra(response.data);
     };
     getBirra();
+
   }, []);
 
   const handleDelete = async (event) => {
@@ -74,12 +95,14 @@ function EditBeer() {
       navigate("/birras");
     } catch (error) {
       console.log(error);
-      setFormError("An error occurred while submitting the form.");
+
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    try {
     const formData = new FormData();
     formData.append("_id", birra._id);
     formData.append("style", birra.style);
@@ -97,12 +120,17 @@ function EditBeer() {
       method: "patch",
       url: `${process.env.REACT_APP_API_URL}/beers/${birra.id}`,
       data: formData,
-    });
-
+    })
     navigate("/birras", { replace: true });
-    dispatch(editAllBeers(response.data));
+    dispatch(editAllBeers(response.data))
+  } catch(error) {
+    console.log(error);
+  }
+   
     // dispatch(newUserBeer(response.data));
   };
+
+
 
   return !birra ? (
     <div className="h-[100vh]">
@@ -112,7 +140,9 @@ function EditBeer() {
   ) : (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[80vh]">
+       
         <div className="md:mt-28">
+        <ToastContainer/>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
               <label
@@ -169,7 +199,8 @@ function EditBeer() {
                 type="file"
                 onChange={handlePhoto}
               />
-            </div>
+             </div>
+          
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div></div>
               <Link to="/tips">
@@ -210,7 +241,7 @@ function EditBeer() {
               <div></div>
 
               <div className="">
-                <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
+                <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end" onClick={(typeof(birra.photo) === "string" ? notifyMissingField : notifySuccess)} >
                   Guardar
                 </button>
                 <button

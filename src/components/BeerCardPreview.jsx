@@ -1,7 +1,7 @@
 import React from "react";
 import glass from "../assets/glassLoading.gif";
 
-function BeerCardPreview({ photo, style, abv, date, description, location }) {
+function BeerCardPreview({  style, abv, date, description, location }) {
   return (
     <div className="w-[275px] sm:w-[250px] bg-cream-light h-[350px] mx-auto rounded mb-8 ">
       <img src={glass} alt="" className="h-[200px] w-full mx-auto rounded-t" />

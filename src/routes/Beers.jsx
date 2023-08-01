@@ -7,7 +7,6 @@ import { getAll } from "../redux/beerReducer";
 
 function Beers() {
   const beers = useSelector((state) => state.beer);
-  console.log(beers);
 
   const dispatch = useDispatch();
 
