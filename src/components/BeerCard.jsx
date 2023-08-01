@@ -32,10 +32,10 @@ function BeerCard({ photo, style, abv, date, description, location }) {
     setMyBeerCard(false);
   };
 
-  // const words = description?.split(" ");
-  // const truncatedWords = words?.slice(0, 20);
-  // const truncateText = truncatedWords?.join(" ");
-  // const adjustedDescription = truncateText + "...";
+  const words = description?.split(" ");
+  const truncatedWords = words?.slice(0, 20);
+  const truncateText = truncatedWords?.join(" ");
+  const adjustedDescription = truncateText + "...";
 
   return (
     description && (
@@ -55,7 +55,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
             </h6>
 
             <h5 className="text-xs text-start mx-6 mt-2 h-2 font-roboto">
-              {/* {truncateText.length > 20 ? adjustedDescription : truncateText} */}
+              {truncateText.length > 20 ? adjustedDescription : truncateText}
             </h5>
           </div>
 
@@ -96,7 +96,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                         {style} - {abv}%
                       </h2>{" "}
                       <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
-                        {/* {adjustedDescription} */}
+                        {adjustedDescription}
                       </p>
                       <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
                         {description}
