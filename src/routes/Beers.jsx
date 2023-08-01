@@ -18,6 +18,9 @@ function Beers() {
   }, []);
 
   return beers && (
+    beers.length === 0 ? (
+      <div className="h-[60vH]"><h2 className="text-xl text-red-600">hola</h2></div>
+    ) : (
     <div className="mt-20 mb-12 h-fit">
       <h2 className=" px-auto pt-8 text-[2rem] font-bold text-center font-roboto">
         Nuestras birras
@@ -37,7 +40,7 @@ function Beers() {
         ))}
       </div>{" "}
     </div>
-  );
+  ))
 }
 
 export default Beers;
