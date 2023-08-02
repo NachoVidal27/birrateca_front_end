@@ -65,7 +65,9 @@ function Profile() {
     }
   };
 
-  return (
+
+
+  return user.beers ? (
     <div className="mt-28 h-fit mb-36">
       <h1 className="text-[2rem] font-bold font-roboto ">
         Bienvenido {user.name}
@@ -175,7 +177,10 @@ function Profile() {
         </div>
       </div>
     </div>
-  );
+  ) : 
+  ( <div className="mt-24">
+    <h2 className="mt-24 text-red-500 text-2xl">rompimo todo</h2>
+  </div>)
 }
 
 export default Profile;

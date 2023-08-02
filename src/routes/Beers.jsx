@@ -10,12 +10,13 @@ function Beers() {
 
   const dispatch = useDispatch();
 
+  /* eslint-disable */
   useEffect(() => {
     getAllBeers().then((data) => {
       dispatch(getAll(data));
     });
   }, []);
-
+/* eslint-disable */
   return beers && (
     beers.length === 0 ? (
       <div className="h-[60vH]"><h2 className="text-xl text-red-600">hola</h2></div>

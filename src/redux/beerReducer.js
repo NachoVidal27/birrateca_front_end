@@ -21,8 +21,11 @@ const beerSlice = createSlice({
     create(state, action) {
       state.push(action.payload);
     },
+    deleteBeer(state, action) {
+      return state.filter(beer => beer.id !== action.payload._id);
+    },
   },
 });
 
-export const { create, editAllBeers, getAll } = beerSlice.actions;
+export const { create, editAllBeers, deleteBeer, getAll } = beerSlice.actions;
 export default beerSlice.reducer;

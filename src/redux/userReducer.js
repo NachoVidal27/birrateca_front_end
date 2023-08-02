@@ -24,8 +24,12 @@ const userSlice = createSlice({
     newUserBeer(state, action) {
       state.beers = [...state.beers, action.payload];
     },
+    deleteUserBeer(state, action) {
+      const updatedBeers = state.beers.filter(beer => beer._id !== action.payload._id);
+      return { ...state, beers: updatedBeers };
+    }
   },
 });
 
-export const { login, logOut, edit, create, newUserBeer } = userSlice.actions;
+export const { login, logOut, edit, create, newUserBeer, deleteUserBeer } = userSlice.actions;
 export default userSlice.reducer;

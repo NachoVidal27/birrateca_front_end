@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import { editAllBeers } from "../redux/beerReducer";
+import { editAllBeers, deleteBeer } from "../redux/beerReducer";
+import { deleteUserBeer } from "../redux/userReducer";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -16,13 +17,6 @@ import { ToastContainer, toast } from "react-toastify";
 function EditBeer() {
   const user = useSelector((state) => state.user);
   const [birra, setBirra] = useState(null);
-
-  // const [birraLoaded, setBirraLoaded] = useState(false);
-  // const [style, setStyle] = useState();
-  // const [abv, setAbv] = useState(null);
-  // const [location, setLocation] = useState(null);
-  // const [brewDate, setBrewDate] = useState(null);
-  // const [description, setDescription] = useState(null);
   let { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,6 +63,15 @@ function EditBeer() {
     });
   };
 
+  const notifyDelete = () => {
+    toast.success("Birra eliminada correctamente", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 6000,
+    });
+
+  };
+
+  /* eslint-disable */
   useEffect(() => {
     const getBirra = async () => {
       const response = await axios({
@@ -81,17 +84,21 @@ function EditBeer() {
     getBirra();
 
   }, []);
+  /* eslint-disable */
 
   const handleDelete = async (event) => {
     event.preventDefault();
+    notifyDelete()
     try {
-      await axios({
+      const response = await axios({
         method: "delete",
         url: `${process.env.REACT_APP_API_URL}/beers/${birra.id}`,
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
+      dispatch(deleteUserBeer(response.data))
+      // dispatch(deleteBeer(response.data))
       navigate("/birras");
     } catch (error) {
       console.log(error);
