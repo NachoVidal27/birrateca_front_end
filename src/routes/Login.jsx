@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 function Login() {
   const [memberId, setMemberId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,13 +33,14 @@ function Login() {
         data: { memberId: memberId, password: password },
         method: "post",
       });
-      dispatch(login(response.data.user));
       if (response.data.user.token) {
+        dispatch(login(response.data.user));
         navigate("/birras");
       } else {
-        console.log("no funcionó el login");
+        setError("Credenciales inválidas");
       }
     } catch (error) {
+      setError("Credenciales inválidas");
       console.log(error);
     }
   };
@@ -66,7 +69,8 @@ function Login() {
             onChange={handlePassword}
           />
         </div>
-
+  
+        {error && <small className="text-red-500 text-sm">{error}</small>}
         <button className="px-4 py-1 block mx-auto bg-black text-white border-1  w-28 font-semibold mt-4 rounded">
           Ingresar
         </button>
