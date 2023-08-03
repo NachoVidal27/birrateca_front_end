@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
 import emailjs from "@emailjs/browser";
 
-function BeerCard({ photo, style, abv, date, description, location }) {
+function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   const user = useSelector((state) => state.user);
   const [exchangeModal, setExchangeModal] = useState(false);
   const [myBeerCard, setMyBeerCard] = useState(false);
@@ -14,13 +14,14 @@ function BeerCard({ photo, style, abv, date, description, location }) {
 
   const data = {
     user_name: user.name,
-    to_email: user.email,
+    to_user_name: user_id.name,
+    to_email: user_id.email,
     selectedBeer_style: selectedBeer.style,
     selectedBeer_abv: selectedBeer.abv,
     selectedBeer_location: selectedBeer.location,
-    style: "birra.style",
-    abv: "4.2",
-    phone: "091459408",
+    style: style,
+    abv: abv,
+    phone: user_id.phone,
   };
 
   const sendEmail = () => {
