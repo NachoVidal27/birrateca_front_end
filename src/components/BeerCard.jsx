@@ -4,12 +4,39 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import ExchangeCards from "./ExchangeCards";
 import { Link } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
+import emailjs from '@emailjs/browser';
 
 function BeerCard({ photo, style, abv, date, description, location }) {
   const user = useSelector((state) => state.user);
   const [exchangeModal, setExchangeModal] = useState(false);
   const [myBeerCard, setMyBeerCard] = useState(false);
   const [selectedBeer, setSelectedBeer] = useState({});
+  
+  const data = {
+    user_name: user.name,
+    user_email: user.email,
+    selectedBeer_style: selectedBeer.style,
+    selectedBeer_abv: selectedBeer.abv,
+    selectedBeer_location: selectedBeer.location,
+    style: "birra.style",
+    abv: "4.2",
+    phone: "091459408"
+  };
+
+  const sendEmail = () => {
+    emailjs.send(
+      "service_l5fijol",
+      'template_w344k0j',
+      data,
+      'HIbFwv-O6m_d5fq9x'
+    )
+      .then((result) => {
+        console.log(result.text);
+      })
+      .catch((error) => {
+        console.log(error.text);
+      });
+  };
 
   const handleOpenModal = () => {
     setExchangeModal(true);
@@ -17,10 +44,6 @@ function BeerCard({ photo, style, abv, date, description, location }) {
   const handleCloseModal = () => {
     setExchangeModal(false);
   };
-
-  // const handleOpenBeerCard = (birra) => {
-  //   setMyBeerCard(true);
-  // };
 
   const handleSelectedBeer = (birra) => {
     setSelectedBeer(birra);
@@ -36,6 +59,8 @@ function BeerCard({ photo, style, abv, date, description, location }) {
   const truncatedWords = words?.slice(0, 20);
   const truncateText = truncatedWords?.join(" ");
   const adjustedDescription = truncateText + "...";
+
+
 
   return (
     description && (
@@ -175,7 +200,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
                   )}
                 </div>
                 {user.beers.length > 0 ? (
-                  <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
+                  <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white"  onClick={sendEmail}>
                     Intercambiar
                   </button>
                 ) : (
