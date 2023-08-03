@@ -13,15 +13,15 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   const [selectedBeer, setSelectedBeer] = useState({});
 
   const data = {
-    // user_name: user.name,
-    // to_user_name: user_id.name,
+    user_name: user.name,
+    to_user_name: user_id.name,
     to_email: user_id.email,
     selectedBeer_style: selectedBeer.style,
     selectedBeer_abv: selectedBeer.abv,
     selectedBeer_location: selectedBeer.location,
     style: style,
     abv: abv,
-    phone: user_id.phone,
+    phone: user.phone,
   };
 
   const sendEmail = () => {
