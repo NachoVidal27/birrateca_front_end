@@ -15,7 +15,6 @@ import AuthRequire from "./hooks/AuthRequire";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import EditBeer from "./routes/EditBeer";
-import  ExchangeEmail  from "./components/ExchangeEmail";
 
 function App() {
   const [splash, setSplash] = useState(true);
@@ -37,7 +36,6 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
-            <Route path="/tests" element={<ExchangeEmail />} />
             <Route element={<AuthRequire />}>
               <Route path="/:id" element={<EditBeer />} />
               <Route path="/tips" element={<PhotoTips />} />
