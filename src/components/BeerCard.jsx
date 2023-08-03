@@ -30,6 +30,7 @@ function BeerCard({ photo, style, abv, date, description, location }) {
       data,
       'HIbFwv-O6m_d5fq9x'
     )
+    console.log(data)
       .then((result) => {
         console.log(result.text);
       })
