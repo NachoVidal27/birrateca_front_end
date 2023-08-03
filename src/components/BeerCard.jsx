@@ -21,7 +21,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
     selectedBeer_location: selectedBeer.location,
     style: style,
     abv: abv,
-    phone: user_id.phone,
+    phone: user.phone,
   };
 
   const sendEmail = () => {
