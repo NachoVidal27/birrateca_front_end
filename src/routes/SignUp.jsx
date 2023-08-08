@@ -17,31 +17,26 @@ function SignUp() {
 
   const handleName = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, name: value });
   };
 
   const handleMemberId = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, memberId: value });
   };
 
   const handlePhone = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, phone: value });
   };
 
   const handleEmail = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, email: value });
   };
 
   const handlePassword = (e) => {
     const value = e.target.value;
-    console.log(value);
     setUser({ ...user, password: value });
   };
 

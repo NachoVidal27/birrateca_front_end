@@ -5,6 +5,8 @@ import ExchangeCards from "./ExchangeCards";
 import { Link } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import debounce from "debounce";
 
 function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   const user = useSelector((state) => state.user);
@@ -22,18 +24,6 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
     style: style,
     abv: abv,
     phone: user.phone,
-  };
-
-  const sendEmail = () => {
-    emailjs
-      .send("service_l5fijol", "template_w344k0j", data, "HIbFwv-O6m_d5fq9x")
-      .then((result) => {
-        console.log(result.text);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error.text);
-      });
   };
 
   const handleOpenModal = () => {
@@ -57,6 +47,29 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   const truncatedWords = words?.slice(0, 20);
   const truncateText = truncatedWords?.join(" ");
   const adjustedDescription = truncateText + "...";
+
+  const successToast = () => {
+    toast.success("Intercambio enviado con exito", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000,
+    });
+  };
+
+  const sendEmail = () => {
+    emailjs
+      .send("service_l5fijol", "template_w344k0j", data, "HIbFwv-O6m_d5fq9x")
+      .then(() => {
+        successToast();
+        setTimeout(() => {
+          handleCloseModal();
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error.text);
+      });
+  };
+
+  const onClick2 = debounce(sendEmail, 2000);
 
   return (
     description && (
@@ -198,9 +211,10 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                 {user.beers.length > 0 ? (
                   <button
                     className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white"
-                    onClick={sendEmail}
+                    onClick={onClick2}
                   >
                     Intercambiar
+                    <ToastContainer />
                   </button>
                 ) : (
                   <Link to="/birra-form">
