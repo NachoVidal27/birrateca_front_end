@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { create } from "../redux/beerReducer";
 import { useNavigate } from "react-router-dom";
+import { getAllUsers } from "../services/getAllUsers";
 
 function SignUp() {
+  // const users = [
+  //   { email: "igjovidal@gmail.com", phone: "091459408" },
+  //   {
+  //     email: "igjovidaleeee@gmail.com",
+  //     phone: "091459407",
+  //   },
+  // ];
+
+  const [users, setUsers] = useState([]);
+
+  const [formError, setFormError] = useState({
+    email: false,
+    phone: false,
+    memberId: false,
+  });
+
   const [user, setUser] = useState({
     name: "",
     memberId: "",
@@ -22,17 +39,50 @@ function SignUp() {
 
   const handleMemberId = (e) => {
     const value = e.target.value;
+    let hasError = false;
+
+    users.forEach((user) => {
+      if (user.memberId === value) {
+        console.log("coincide con db");
+        hasError = true;
+      }
+    });
+    setFormError({ ...formError, memberId: hasError });
     setUser({ ...user, memberId: value });
   };
 
   const handlePhone = (e) => {
     const value = e.target.value;
+    let hasError = false;
+    users.forEach((user) => {
+      if (user.phone === value) {
+        console.log("coincide con db");
+        hasError = true;
+      }
+    });
+    setFormError({ ...formError, phone: hasError });
     setUser({ ...user, phone: value });
   };
 
+  /* precisamos que el value del input email
+users.map((user) => {
+  if user.email === value {
+    return alert("este email ya esta en uso")
+  } else {
+    setUser(...user, email: value)
+  }
+})
+*/
+
   const handleEmail = (e) => {
     const value = e.target.value;
-    setUser({ ...user, email: value });
+    users.map((user) => {
+      if (user.email === value) {
+        return alert("este email ya esta en uso");
+      } else {
+        return setUser({ ...user, email: value });
+      }
+    });
   };
 
   const handlePassword = (e) => {
@@ -65,6 +115,12 @@ function SignUp() {
     console.log("entramos al axios");
   };
 
+  useEffect(() => {
+    getAllUsers().then((data) => {
+      setUsers(data);
+    });
+  }, []);
+
   return (
     <div className="mt-28 h-[75vh]">
       <div className="flex justify-center text-start mx-auto ms-4 pt-2">
@@ -82,7 +138,7 @@ function SignUp() {
               placeholder="Ingrese su nombre"
             />
           </div>
-          <div className="mb-2">
+          <div className="">
             <label className="me-6 mb-2 ps-1" htmlFor="memberId">
               Número de socio
             </label>
@@ -95,7 +151,12 @@ function SignUp() {
               placeholder="Ingrese su número de socio"
             />
           </div>
-          <div className="mb-2">
+          <div>
+            {formError.memberId ? (
+              <h2 className="text-md ps-1 text-red-500">Member Id en uso</h2>
+            ) : null}
+          </div>
+          <div className="">
             <label className="me-6 ps-1" htmlFor="phone">
               Número de contacto
             </label>
@@ -107,6 +168,11 @@ function SignUp() {
               onChange={handlePhone}
               placeholder="Ingrese su número de contacto"
             />
+          </div>
+          <div>
+            {formError.phone ? (
+              <h2 className="text-md ps-1 text-red-500">Telefono en uso</h2>
+            ) : null}
           </div>
           <div className="mb-2">
             <label className="me-6 ps-1" htmlFor="email">
