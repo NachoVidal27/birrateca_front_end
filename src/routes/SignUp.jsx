@@ -76,14 +76,25 @@ users.map((user) => {
 
   const handleEmail = (e) => {
     const value = e.target.value;
-    users.map((user) => {
+    let hasError = false;
+    users.forEach((user) => {
       if (user.email === value) {
-        return alert("este email ya esta en uso");
-      } else {
-        return setUser({ ...user, email: value });
+        console.log("coincide con db");
+        hasError = true;
       }
     });
+    setFormError({ ...formError, email: hasError });
+    setUser({ ...user, email: value });
   };
+
+  //   users.map((user) => {
+  //     if (user.email === value) {
+  //       return alert("este email ya esta en uso");
+  //     } else {
+  //       return setUser({ ...user, email: value });
+  //     }
+  //   });
+  // };
 
   const handlePassword = (e) => {
     const value = e.target.value;
@@ -129,81 +140,37 @@ users.map((user) => {
             <label className="me-6 ps-1" htmlFor="name">
               Nombre
             </label>
-            <input
-              className="w-full border rounded ps-1"
-              type="text"
-              name="name"
-              value={user.name}
-              onChange={handleName}
-              placeholder="Ingrese su nombre"
-            />
+            <input className="w-full border rounded ps-1" type="text" name="name" value={user.name} onChange={handleName} placeholder="Ingrese su nombre" />
           </div>
           <div className="">
             <label className="me-6 mb-2 ps-1" htmlFor="memberId">
               Número de socio
             </label>
-            <input
-              className="w-full border rounded ps-1"
-              type="text"
-              name="memberId"
-              value={user.memberId}
-              onChange={handleMemberId}
-              placeholder="Ingrese su número de socio"
-            />
+            <input className="w-full border rounded ps-1" type="text" name="memberId" value={user.memberId} onChange={handleMemberId} placeholder="Ingrese su número de socio" />
           </div>
-          <div>
-            {formError.memberId ? (
-              <h2 className="text-md ps-1 text-red-500">Member Id en uso</h2>
-            ) : null}
-          </div>
+          <div>{formError.memberId ? <h2 className="text-md ps-1 text-red-500">Member Id en uso</h2> : null}</div>
           <div className="">
             <label className="me-6 ps-1" htmlFor="phone">
               Número de contacto
             </label>
-            <input
-              className="w-full border rounded ps-1"
-              type="text"
-              name="phone"
-              value={user.phone}
-              onChange={handlePhone}
-              placeholder="Ingrese su número de contacto"
-            />
+            <input className="w-full border rounded ps-1" type="text" name="phone" value={user.phone} onChange={handlePhone} placeholder="Ingrese su número de contacto" />
           </div>
-          <div>
-            {formError.phone ? (
-              <h2 className="text-md ps-1 text-red-500">Telefono en uso</h2>
-            ) : null}
-          </div>
+          <div>{formError.phone ? <h2 className="text-md ps-1 text-red-500">Telefono en uso</h2> : null}</div>
           <div className="mb-2">
             <label className="me-6 ps-1" htmlFor="email">
               Email
             </label>
-            <input
-              className="w-full border rounded ps-1"
-              type="text"
-              name="email"
-              value={user.email}
-              onChange={handleEmail}
-              placeholder="Ingrese su email"
-            />
+            <input className="w-full border rounded ps-1" type="text" name="email" value={user.email} onChange={handleEmail} placeholder="Ingrese su email" />
           </div>
+          <div>{formError.email ? <h2 className="text-md ps-1 text-red-500">E-mail en uso</h2> : null}</div>
           <div className="mb-2">
             <label className="me-6 ps-1" htmlFor="password">
               Password
             </label>
-            <input
-              className="w-full border rounded ps-1"
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={handlePassword}
-              placeholder="Ingrese su password"
-            />
+            <input className="w-full border rounded ps-1" type="password" name="password" value={user.password} onChange={handlePassword} placeholder="Ingrese su password" />
           </div>
           <div className="flex justify-center">
-            <button className="px-4 py-1  bg-cream-light hover:bg-cream-dark border-2 text-l rounded mt-2 ">
-              Guardar
-            </button>
+            <button className="px-4 py-1  bg-cream-light hover:bg-cream-dark border-2 text-l rounded mt-2 ">Guardar</button>
           </div>
         </form>
       </div>
