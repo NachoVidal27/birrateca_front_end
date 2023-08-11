@@ -14,15 +14,14 @@ import { ToastContainer, toast } from "react-toastify";
 function AddBeer() {
   const user = useSelector((state) => state.user);
   const [newBeer, setNewBeer] = useState({
-    beerId: "",
     style: "",
     description: "",
     location: "",
     abv: "",
     photo: "",
     brewDate: "",
-    memberId: "",
   });
+
   const [charCount, setCharCount] = useState(120);
 
   const navigate = useNavigate();
@@ -80,29 +79,48 @@ function AddBeer() {
     });
   };
 
+  const notifyMissingField = () => {
+    toast.warning("Asegurate de haber completado todos los campos", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("style", newBeer.style);
-    formData.append("description", newBeer.description);
-    formData.append("abv", newBeer.abv);
-    formData.append("photo", newBeer.photo);
-    formData.append("brewDate", newBeer.brewDate);
-    formData.append("location", newBeer.location);
+    if (
+      newBeer.abv === "" ||
+      newBeer.brewDate === "" ||
+      newBeer.description === "" ||
+      newBeer.photo === "" ||
+      newBeer.style === "" ||
+      newBeer.location === ""
+    ) {
+      notifyMissingField();
+    } else {
+      notify();
+      const formData = new FormData();
+      formData.append("style", newBeer.style);
+      formData.append("description", newBeer.description);
+      formData.append("abv", newBeer.abv);
+      formData.append("photo", newBeer.photo);
+      formData.append("brewDate", newBeer.brewDate);
+      formData.append("location", newBeer.location);
 
-    const response = await axios({
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${user.token}`,
-      },
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/beers`,
-      data: formData,
-    });
+      const response = await axios({
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user.token}`,
+        },
+        method: "post",
+        url: `${process.env.REACT_APP_API_URL}/beers`,
+        data: formData,
+      });
 
-    navigate("/birras", { replace: true });
-    dispatch(create(response.data));
-    dispatch(newUserBeer(response.data));
+      navigate("/birras", { replace: true });
+      dispatch(create(response.data));
+      dispatch(newUserBeer(response.data));
+    }
   };
 
   return (
@@ -213,10 +231,7 @@ function AddBeer() {
 
             <div></div>
             <div className="">
-              <button
-                className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end"
-                onClick={notify}
-              >
+              <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
                 Guardar
               </button>
               <ToastContainer />

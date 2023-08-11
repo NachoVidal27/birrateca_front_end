@@ -46,7 +46,7 @@ function Login() {
   };
 
   return (
-    <div className="mt-24 h-[80vh] ">
+    <div className="mt-28 h-[80vh] ">
       <h2 className="text-2xl font-bold mb-1">Iniciar sesión</h2>
       <form action="" onSubmit={handleLogin}>
         <div className="flex flex-col mt-2">
@@ -69,7 +69,7 @@ function Login() {
             onChange={handlePassword}
           />
         </div>
-  
+
         {error && <small className="text-red-500 text-sm">{error}</small>}
         <button className="px-4 py-1 block mx-auto bg-black text-white border-1  w-28 font-semibold mt-4 rounded">
           Ingresar
