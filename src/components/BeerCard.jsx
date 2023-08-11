@@ -101,15 +101,15 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
         </div>
         {exchangeModal ? (
           <>
-            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none max-w-3xl mx-auto my-auto">
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto md:h-[600px] xl:h-auto fixed inset-0 z-50 outline-none focus:outline-none max-w-3xl mx-auto my-auto">
               {/* <div className="relative w-auto my-6 mx-auto max-w-3xl"> */}
               <div className="border-0 rounded-lg shadow-lg relative grid grid-cols-1 w-full  bg-white outline-none focus:outline-none">
-                <div className="flex items-center text-center justify-between p-5 border-b border-solid border-slate-200 rounded-t mb-2">
-                  <h3 className="text-3xl font-semibold text-center">
+                <div className="flex items-center text-center justify-between py-2 border-b border-solid border-slate-200 rounded-t mb-2">
+                  <h3 className="text-xl font-semibold text-center ms-4">
                     Solicitar intercambio
                   </h3>
                   <button
-                    className=" ml-auto bg-white rounded-xl text-black opacity-100 float-right text-md px-2 py-1 hover:bg-cream-light hover:text-black"
+                    className=" ml-auto bg-white rounded-xl text-black opacity-100 float-right text-md px-3 py-1 me-2 hover:bg-cream-light hover:text-black"
                     onClick={handleCloseModal}
                   >
                     x
@@ -121,20 +121,20 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                       <img
                         src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${photo}`}
                         alt=""
-                        className="h-[200px] md:h-[300px] w-[170px]  md:w-[250px] mx-auto rounded-t object-cover"
+                        className="h-[150px] w-[150px] md:h-[270px]  md:w-[230px] mx-auto rounded-t static object-cover"
                       />
                     </div>
                     <div className="ms-2 mt-3">
                       <h2 className="text-md lg:text-lg font-semibold">
                         {style} - {abv}%
                       </h2>{" "}
-                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
+                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[70px] leading-5">
                         {adjustedDescription}
                       </p>
-                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
+                      <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[70px] leading-5">
                         {description}
                       </p>
-                      <p className="mt-2 md:mt-6 text-sm md:text-md invisible md:visible font-semibold">
+                      <p className="mt-2 text-sm md:text-md invisible md:visible font-semibold">
                         Elaborado en: {location} el {date}
                       </p>
                     </div>
@@ -174,26 +174,26 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                   ) : (
                     <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 h-[300px] ">
                       <div className="relative">
-                        <p className="absolute top-0 left-0 md:left-11 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
+                        <p className="absolute top-0 left-0 md:left-12 ms-1 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
                           <WestIcon onClick={handleCloseBeerCard} />
                         </p>
                         <img
                           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${selectedBeer.photo}`}
                           alt=""
-                          className="h-[200px] md:h-[300px] w-[170px] md:w-[250px] mx-auto rounded-t static object-cover"
+                          className="h-[150px] w-[150px] md:h-[270px]  md:w-[230px] mx-auto rounded-t static object-cover"
                         />
                       </div>
                       <div className="ms-2 mt-3">
                         <h2 className=" text-md lg:text-lg font-semibold">
                           {selectedBeer.style} - {selectedBeer.abv}%
                         </h2>{" "}
-                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[100px] leading-5">
+                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md md:invisible md:h-0 h-[70px] leading-5">
                           {selectedBeer.description}
                         </p>
-                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[100px] leading-5">
+                        <p className="ms-2 md:mx-auto mt-2 text-black opacity-90 text-sm md:text-md invisible md:visible h-0 md:h-[70px] leading-5">
                           {selectedBeer.description}
                         </p>
-                        <p className="mt-2 md:mt-6 text-sm md:text-md font-semibold invisible md:visible">
+                        <p className="mt-2 text-sm md:text-md font-semibold invisible md:visible">
                           Elaborado en: {selectedBeer.location} el{" "}
                           {selectedBeer.brewDate}
                         </p>
@@ -209,7 +209,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                 </div>
                 {user.beers.length > 0 ? (
                   <button
-                    className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white"
+                    className="bg-black px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white"
                     onClick={onClick2}
                   >
                     Intercambiar
@@ -217,7 +217,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                   </button>
                 ) : (
                   <Link to="/birra-form">
-                    <button className="bg-black px-3 py-2 w-fit mx-auto my-3 mt-6 rounded text-md text-white">
+                    <button className="bg-black px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white">
                       Subir nueva birra
                     </button>
                   </Link>
@@ -225,6 +225,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
               </div>
               {/* </div> */}
             </div>
+
             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
           </>
         ) : null}
