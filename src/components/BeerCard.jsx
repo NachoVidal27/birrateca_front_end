@@ -4,6 +4,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import ExchangeCards from "./ExchangeCards";
 import { Link } from "react-router-dom";
 import WestIcon from "@mui/icons-material/West";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import debounce from "debounce";
@@ -44,6 +45,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   };
 
   const sendEmail = () => {
+    successToast();
     const data = {
       user_name: user.name,
       to_user_name: user_id.name,
@@ -58,7 +60,6 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
     emailjs
       .send("service_l5fijol", "template_w344k0j", data, "HIbFwv-O6m_d5fq9x")
       .then(() => {
-        successToast();
         setTimeout(() => {
           handleCloseModal();
         }, 2000);
@@ -146,6 +147,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                           <h2 className="text-lg font-semibold mb-4">
                             Seleccionar birra para intercambio
                           </h2>
+
                           {user.beers.map((birra) => (
                             <div
                               key={birra.id}
@@ -175,7 +177,10 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                     <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 h-[300px] ">
                       <div className="relative">
                         <p className="absolute top-0 left-0 md:left-12 ms-1 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
-                          <WestIcon onClick={handleCloseBeerCard} />
+                          <ArrowBackOutlinedIcon
+                            onClick={handleCloseBeerCard}
+                            className="brightness-120 text-bold"
+                          />
                         </p>
                         <img
                           src={`https://jppbjldmchkberncwcoz.supabase.co/storage/v1/object/public/birrateca_fotos/birra_fotos/${selectedBeer.photo}`}

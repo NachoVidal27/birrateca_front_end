@@ -5,23 +5,27 @@ import { create } from "../redux/beerReducer";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../services/getAllUsers";
 import { ToastContainer, toast } from "react-toastify";
-
+/* eslint-disable */
 function SignUp() {
-  // const users = [
-  //   { email: "igjovidal@gmail.com", phone: "091459408" },
-  //   {
-  //     email: "igjovidaleeee@gmail.com",
-  //     phone: "091459407",
-  //   },
-  // ];
-
   const [users, setUsers] = useState([]);
-
   const [formError, setFormError] = useState({
+    name: false,
     email: false,
     phone: false,
     memberId: false,
   });
+
+  const [regexNameError, setRegexNameError] = useState(true);
+  const [regexMemberIdError, setRegexMemberIdError] = useState(true);
+  const [regexPhoneError, setRegexPhoneError] = useState(true);
+  const [regexEmailError, setRegexEmailError] = useState(true);
+
+  const regexName = /^[A-Za-záéíóúñÁÉÍÓÚÑ]+([ ]?[A-Za-záéíóúñÁÉÍÓÚÑ]+)*$/;
+  const regexMemberID = /^(?:1000|[1-9][0-9]{0,2}|0)$/;
+  const regexPhoneNumber = /^(?:\+598\d{8}|0\d{8})$/;
+  const regexEmail = /^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
+
+  const [disabled, setDisabled] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
@@ -36,6 +40,7 @@ function SignUp() {
   const handleName = (e) => {
     const value = e.target.value;
     setUser({ ...user, name: value });
+    setRegexNameError(true);
   };
 
   const handleMemberId = (e) => {
@@ -50,6 +55,7 @@ function SignUp() {
     });
     setFormError({ ...formError, memberId: hasError });
     setUser({ ...user, memberId: value });
+    setRegexMemberIdError(true);
   };
 
   const handlePhone = (e) => {
@@ -63,6 +69,7 @@ function SignUp() {
     });
     setFormError({ ...formError, phone: hasError });
     setUser({ ...user, phone: value });
+    setRegexPhoneError(true);
   };
 
   /* precisamos que el value del input email
@@ -86,6 +93,7 @@ users.map((user) => {
     });
     setFormError({ ...formError, email: hasError });
     setUser({ ...user, email: value });
+    setRegexEmailError(true);
   };
 
   //   users.map((user) => {
@@ -113,20 +121,30 @@ users.map((user) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let newUser = {
+      name: user.name,
+      memberId: user.memberId,
+      phone: user.phone,
+      email: user.email,
+      password: user.password,
+    };
+
+    let checkName = regexName.test(newUser.name);
+    let checkMemberId = regexMemberID.test(newUser.memberId);
+    let checkPhone = regexPhoneNumber.test(newUser.phone);
+    let checkEmail = regexEmail.test(newUser.email);
+
+    console.log("name " + checkName);
+    console.log("memberid " + checkMemberId);
+    console.log("phone " + checkPhone);
+    console.log("email " + checkEmail);
+
     if (
-      formError.email === true ||
-      formError.memberId === true ||
-      formError.phone === true
+      checkName === true &&
+      checkMemberId === true &&
+      checkPhone === true &&
+      checkEmail === true
     ) {
-      return alerta();
-    } else {
-      const newUser = {
-        name: user.name,
-        memberId: user.memberId,
-        email: user.email,
-        password: user.password,
-        phone: user.phone,
-      };
       console.log("no entramos al axios");
       const response = await axios({
         headers: {
@@ -139,6 +157,13 @@ users.map((user) => {
       dispatch(create(response.data));
       navigate("/login", { replace: true });
       console.log("entramos al axios");
+    } else {
+      /*si tiene error se setea el valir del state en false */
+      setRegexNameError(checkName);
+      setRegexMemberIdError(checkMemberId);
+      setRegexPhoneError(checkPhone);
+      setRegexEmailError(checkEmail);
+      return console.log("error en input");
     }
   };
 
@@ -147,12 +172,11 @@ users.map((user) => {
       setUsers(data);
     });
   }, []);
-
   return (
     <div className="mt-28 h-[75vh]">
       <div className="flex justify-center text-start mx-auto ms-4 pt-2">
         <form onSubmit={handleSubmit}>
-          <div className="mb-2">
+          <div className="">
             <label className="me-6 ps-1" htmlFor="name">
               Nombre
             </label>
@@ -165,8 +189,15 @@ users.map((user) => {
               placeholder="Ingrese su nombre"
             />
           </div>
+          <div>
+            {regexNameError ? null : (
+              <h2 className="text-md ps-1 text-red-500">
+                Asegurate de no incluir simbolos en este input
+              </h2>
+            )}
+          </div>
           <div className="">
-            <label className="me-6 mb-2 ps-1" htmlFor="memberId">
+            <label className="me-6 ps-1" htmlFor="memberId">
               Número de socio
             </label>
             <input
@@ -182,6 +213,11 @@ users.map((user) => {
             {formError.memberId ? (
               <h2 className="text-md ps-1 text-red-500">Member Id en uso</h2>
             ) : null}
+            {regexMemberIdError ? null : (
+              <h2 className="text-md ps-1 text-red-500">
+                Asegurate de incluir un número de socio valido
+              </h2>
+            )}
           </div>
           <div className="">
             <label className="me-6 ps-1" htmlFor="phone">
@@ -200,6 +236,11 @@ users.map((user) => {
             {formError.phone ? (
               <h2 className="text-md ps-1 text-red-500">Telefono en uso</h2>
             ) : null}
+            {regexPhoneError ? null : (
+              <h2 className="text-md ps-1 text-red-500">
+                Asegurate que el número sea valido
+              </h2>
+            )}
           </div>
           <div className="mb-1">
             <label className="me-6 ps-1" htmlFor="email">
@@ -216,6 +257,11 @@ users.map((user) => {
             {formError.email ? (
               <h2 className="text-md ps-1 text-red-500">E-mail en uso</h2>
             ) : null}
+            {regexEmailError ? null : (
+              <h2 className="text-md ps-1 text-red-500">
+                Asegurate de incluir un email valido
+              </h2>
+            )}
           </div>
 
           <div className="mb-2">

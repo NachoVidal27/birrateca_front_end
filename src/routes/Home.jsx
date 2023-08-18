@@ -41,9 +41,10 @@ function Home() {
           <p className="font-roboto mt-2">
             Bienvenido a nuestra emocionante comunidad de amantes de la cerveza
             artesanal y el intercambio de sabores únicos. En nuestra página de
-            socios de cerveza artesanal, te invitamos a sumergirte en un mundo
-            de aromas y sabores, donde la pasión por la cerveza se combina con
-            la emoción del intercambio.
+            socios del Club de Cerveceros Caseros del Uruguay, te invitamos a
+            sumergirte en un mundo de aromas y sabores, donde la pasión por la
+            cerveza se combina con la emoción del intercambio y conexión entre
+            socios
           </p>
         </div>
         <div className="w-[80%] border border-b-1 mx-auto my-2 border-cream-dark opacity-60"></div>
@@ -58,11 +59,10 @@ function Home() {
           </h3>
           <p className="font-roboto mt-2">
             Nuestra plataforma fue creada para conectar a cerveceros caseros,
-            aficionados y apasionados por la cerveza artesanal de todo el mundo.
-            Creemos en la diversidad de estilos y en la creatividad de cada
-            productor individual. Aquí, podrás descubrir nuevas cervezas
-            artesanales y compartir las tuyas con otros miembros de la
-            comunidad.
+            aficionados y apasionados por la cerveza artesanal de todas partes
+            del Uruguay. Creemos en la diversidad de estilos y en la creatividad
+            de cada productor individual. Aquí, podrás descubrir nuevas cervezas
+            artesanales y compartir las tuyas con otros miembros del club.
           </p>
         </div>
         <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-30 "></div>
@@ -98,8 +98,9 @@ function Home() {
             Cuando encuentres una cerveza que despierte tu curiosidad,
             simplemente solicita un intercambio con el socio elaborador. Deberás
             ofrecer una de tus propias creaciones para intercambiar con otro
-            socio. El objetivo de esta comunidad es unir socios y mejorar la
-            calidad de cada cerveza con las devoluciones de los mismos.
+            socio. Una vez hayas seleccionado las birras para intercambiar,
+            solicitaras el intercambio y el socio recibirá un mail con la
+            información necesaria para contactarte.
           </p>
         </div>
       </div>
