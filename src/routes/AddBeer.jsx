@@ -124,7 +124,7 @@ function AddBeer() {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[80vh]">
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[90vh]">
         <div className="md:mt-28">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">

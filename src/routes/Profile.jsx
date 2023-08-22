@@ -169,7 +169,7 @@ function Profile() {
                 <div>
                   <input
                     type="text"
-                    className="border border-black rounded px-2 "
+                    className="border border-black rounded px-2 w-[90%] md:w-full"
                     value={name}
                     onChange={handleName}
                   />
@@ -192,7 +192,7 @@ function Profile() {
               <div>
                 <input
                   type="text"
-                  className="border border-black rounded px-2"
+                  className="border border-black rounded px-2 w-[90%] md:w-full"
                   value={memberId}
                   onChange={handleMemberId}
                 />
@@ -218,7 +218,7 @@ function Profile() {
                 {" "}
                 <input
                   type="text"
-                  className="border border-black rounded px-2"
+                  className="border border-black rounded px-2 w-[90%] md:w-full"
                   value={phone}
                   onChange={handlePhone}
                 />
@@ -243,7 +243,7 @@ function Profile() {
               <div>
                 <input
                   type="text"
-                  className="border border-black rounded px-2 "
+                  className="border border-black rounded px-2 w-[90%] md:w-full"
                   value={email}
                   onChange={handleEmail}
                 />
