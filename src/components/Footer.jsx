@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import LanguageIcon from "@mui/icons-material/Language";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
 function Footer() {
@@ -14,22 +14,16 @@ function Footer() {
             </h3>
             <div className="flex flex-col items-start mx-auto">
               <Link>
-                <div className="text-white text-sm my-1 ">
+                <div className=" text-white text-sm my-1 ">
                   <InstagramIcon className="mr-1 " />
                   Instagram CCCUY
                 </div>
               </Link>
-              <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
-                <div className="flex justify-center text-white text-sm my-1">
-                  <FacebookRoundedIcon className="mr-1 " />
-                  Facebook CCCUY
-                </div>
-              </Link>
 
-              <Link to="https://www.facebook.com/cccuy.oficial/?locale=es_LA">
-                <div className="flex justify-center text-white text-sm my-1">
-                  <InstagramIcon className="mr-1 " />
-                  Instagram Birrateca
+              <Link to="https://www.cerveceroscaseros.com.uy/">
+                <div className=" text-white text-sm mt-1">
+                  <LanguageIcon className="mr-1 " />
+                  Web CCCUY
                 </div>
               </Link>
             </div>
@@ -47,7 +41,7 @@ function Footer() {
           </div>
           <div className="my-4 md:my-0">
             <h3 className="text-white font-roboto text-xl md:border-b-2 md:w-[40%] mx-auto pb-2 mb-2">
-              Sobre nosotros
+              Equipo desarrollo
             </h3>
             <Link to="https://www.linkedin.com/in/ignacio-vidal-dev/">
               <h4 className="text-white text-sm my-1">Ignacio Vidal</h4>

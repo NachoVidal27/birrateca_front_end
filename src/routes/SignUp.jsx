@@ -25,8 +25,6 @@ function SignUp() {
   const regexPhoneNumber = /^(?:\+598\d{8}|0\d{8})$/;
   const regexEmail = /^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
 
-  const [disabled, setDisabled] = useState(false);
-
   const [user, setUser] = useState({
     name: "",
     memberId: "",
@@ -112,12 +110,12 @@ users.map((user) => {
 
   const dispatch = useDispatch();
 
-  const alerta = () => {
-    toast.error("Los datos utilizados pertenecen a otro usuario", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 4000,
-    });
-  };
+  // const alerta = () => {
+  //   toast.error("Los datos utilizados pertenecen a otro usuario", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //     autoClose: 4000,
+  //   });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

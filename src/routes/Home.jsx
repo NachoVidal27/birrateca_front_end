@@ -61,7 +61,7 @@ function Home() {
             Nuestra plataforma fue creada para conectar a cerveceros caseros,
             aficionados y apasionados por la cerveza artesanal de todas partes
             del Uruguay. Creemos en la diversidad de estilos y en la creatividad
-            de cada productor individual. Aquí, podrás descubrir nuevas cervezas
+            de cada cervecero casero. Aquí, podrás descubrir nuevas cervezas
             artesanales y compartir las tuyas con otros miembros del club.
           </p>
         </div>
@@ -78,10 +78,10 @@ function Home() {
           <p className="font-roboto mt-2 ">
             Es simple. Una vez que te unes a nuestra página de socios de cerveza
             artesanal, tendrás acceso a un catálogo en constante expansión de
-            cervezas únicas y auténticas, elaboradas por personas apasionadas
-            que comparten su amor por la cerveza. Explora nuestra selección, lee
-            las descripciones detalladas y descubre qué cervezas te intrigarían
-            probar.
+            cervezas únicas y auténticas, elaboradas por colegas cerveceros
+            apasionadas que comparten su amor por la cerveza. Explora nuestra
+            selección, lee las descripciones detalladas y descubre qué cervezas
+            te intrigarían probar.
           </p>
         </div>
         <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-30 "></div>
@@ -98,9 +98,11 @@ function Home() {
             Cuando encuentres una cerveza que despierte tu curiosidad,
             simplemente solicita un intercambio con el socio elaborador. Deberás
             ofrecer una de tus propias creaciones para intercambiar con otro
-            socio. Una vez hayas seleccionado las birras para intercambiar,
-            solicitaras el intercambio y el socio recibirá un mail con la
-            información necesaria para contactarte.
+            socio. Una vez hayas recibido la cerveza, asegurate de disfrutarla y
+            enviarle una devolución honesta y respetuosa al socio elaborador. El
+            objetivo de esta comunidad es unir socios y mejorar la calidad de
+            cada cerveza con las devoluciones de los mismos. Y por supuesto, si
+            te gustó no te olvides de compartirlo con los demás socios!
           </p>
         </div>
       </div>
@@ -145,11 +147,11 @@ function Home() {
             </h3>
             <p className="font-roboto text-lg mt-2 text-start pe-10">
               Nuestra plataforma fue creada para conectar a cerveceros caseros,
-              aficionados y apasionados por la cerveza artesanal de todo el
-              mundo. Creemos en la diversidad de estilos y en la creatividad de
-              cada productor individual. Aquí, podrás descubrir nuevas cervezas
-              artesanales y compartir las tuyas con otros miembros de la
-              comunidad.
+              aficionados y apasionados por la cerveza artesanal de todas partes
+              del Uruguay. Creemos en la diversidad de estilos y en la
+              creatividad de cada cervecero casero. Aquí, podrás descubrir
+              nuevas cervezas artesanales y compartir las tuyas con otros
+              miembros del club.
             </p>
           </div>
         </div>
@@ -162,10 +164,10 @@ function Home() {
             <p className="font-roboto text-lg mt-2 text-start pe-10">
               Es simple. Una vez que te unes a nuestra página de socios de
               cerveza artesanal, tendrás acceso a un catálogo en constante
-              expansión de cervezas únicas y auténticas, elaboradas por personas
-              apasionadas que comparten su amor por la cerveza. Explora nuestra
-              selección, lee las descripciones detalladas y descubre qué
-              cervezas te intrigarían probar.
+              expansión de cervezas únicas y auténticas, elaboradas por colegas
+              cerveceros apasionadas que comparten su amor por la cerveza.
+              Explora nuestra selección, lee las descripciones detalladas y
+              descubre qué cervezas te intrigarían probar.
             </p>
           </div>
           <img
@@ -189,9 +191,12 @@ function Home() {
               Cuando encuentres una cerveza que despierte tu curiosidad,
               simplemente solicita un intercambio con el socio elaborador.
               Deberás ofrecer una de tus propias creaciones para intercambiar
-              con otro socio. El objetivo de esta comunidad es unir socios y
+              con otro socio. Una vez hayas recibido la cerveza, asegurate de
+              disfrutarla y enviarle una devolución honesta y respetuosa al
+              socio elaborador. El objetivo de esta comunidad es unir socios y
               mejorar la calidad de cada cerveza con las devoluciones de los
-              mismos.
+              mismos. Y por supuesto, si te gustó no te olvides de compartirlo
+              con los demás socios!
             </p>
           </div>
         </div>

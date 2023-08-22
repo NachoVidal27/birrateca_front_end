@@ -5,7 +5,6 @@ import BeerCardPreview from "../components/BeerCardPreview";
 import axios from "axios";
 import { create } from "../redux/beerReducer";
 import { newUserBeer } from "../redux/userReducer";
-// import { getAllBeers } from "../services/getAllBeers";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -26,7 +25,7 @@ function AddBeer() {
 
   const navigate = useNavigate();
 
-  const handleIngredients = (e) => {
+  const handleLocation = (e) => {
     const location = e.target.value;
 
     setNewBeer({ ...newBeer, location: location });
@@ -129,12 +128,14 @@ function AddBeer() {
         <div className="md:mt-28">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="style"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
-              >
-                Estilo BJCP
-              </label>
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="style"
+                  className="font-semibold  font-roboto text-lg my-1 md:my-0"
+                >
+                  Estilo
+                </label>
+              </div>
               <input
                 className="border-2  mx-8 md:mx-2 roundeed"
                 type="text"
@@ -142,13 +143,16 @@ function AddBeer() {
                 value={newBeer.style}
               />
             </div>
+            <hr className="ms-28 me-4 my-2 invisible md:visible" />
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="abv"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
-              >
-                Abv
-              </label>
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="abv"
+                  className="font-semibold  font-roboto text-lg my-1 md:my-0"
+                >
+                  Abv
+                </label>
+              </div>
               <input
                 className="border-2  mx-8 md:mx-2 roundeed"
                 type="text"
@@ -156,34 +160,60 @@ function AddBeer() {
                 value={newBeer.abv}
               />
             </div>
+            <hr className="ms-28 me-4 my-2 invisible md:visible" />
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="location"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
-              >
-                Ubicación
-              </label>
-              <input
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="location"
+                  className="font-semibold  font-roboto text-lg my-1 md:my-0"
+                >
+                  Ubicación
+                </label>
+              </div>
+              <select
+                name="cars"
                 className="border-2 mx-8 md:mx-2 roundeed"
-                type="text"
-                onChange={handleIngredients}
-                value={newBeer.location}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="photo"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
+                htmlFor="location"
+                onChange={handleLocation}
               >
-                Foto
-              </label>
+                <option value="Artigas">Artigas</option>
+                <option value="Canelones">Canelones</option>
+                <option value="Cerro Largo">Cerro Largo</option>
+                <option value="Colonia">Colonia</option>
+                <option value="Durazno">Durazno</option>
+                <option value="Flores">Flores</option>
+                <option value="Florida">Florida</option>
+                <option value="Lavalleja">Lavalleja</option>
+                <option value="Maldonado">Maldonado</option>
+                <option value="Montevideo">Montevideo</option>
+                <option value="Paysandu">Paysandu</option>
+                <option value="Rio Negro">Rio Negro</option>
+                <option value="Rivera">Rivera</option>
+                <option value="Rocha">Rocha</option>
+                <option value="Salto">Salto</option>
+                <option value="San José">San José</option>
+                <option value="Soriano">Soriano</option>
+                <option value="Tacuarembó">Tacuarembo</option>
+                <option value="Treinta y Tres">Treinta y Tres</option>
+              </select>
+            </div>
+            <hr className="ms-28 me-4 my-2 invisible md:visible" />
+            <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="photo"
+                  className="font-semibold font-roboto text-lg my-1 md:my-0"
+                >
+                  Foto
+                </label>
+              </div>
               <input
                 className="border-2 mx-8 md:mx-2 roundeed"
                 type="file"
                 onChange={handlePhoto}
               />
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div></div>
               <Link to="/tips">
@@ -194,27 +224,33 @@ function AddBeer() {
                 </div>
               </Link>
             </div>
+            <hr className="ms-28 me-4 my-2 invisible md:visible" />
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="brewDate"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
-              >
-                Fecha de elaboración
-              </label>
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="brewDate"
+                  className="font-semibold  font-roboto text-lg my-1 md:my-0"
+                >
+                  Fecha elaboración
+                </label>
+              </div>
               <input
                 className="border-2 mx-8 md:mx-2 roundeed"
-                type="text"
+                type="date"
                 onChange={handleBrewDate}
                 value={newBeer.brewDate}
               />
             </div>
+            <hr className="ms-28 me-4 my-2 invisible md:visible" />
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <label
-                htmlFor="description"
-                className="font-semibold md:font-normal font-roboto text-lg my-1 md:my-0"
-              >
-                Descripción
-              </label>
+              <div className="flex items-start md:w-[50%] mx-auto">
+                <label
+                  htmlFor="description"
+                  className="font-semibold  font-roboto text-lg my-1 md:my-0"
+                >
+                  Descripción
+                </label>
+              </div>
               <textarea
                 className="border-2 mx-8 md:mx-2 roundeed h-16 resize-none"
                 type="text"
