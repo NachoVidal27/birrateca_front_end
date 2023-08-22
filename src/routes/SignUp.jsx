@@ -190,7 +190,7 @@ users.map((user) => {
           <div>
             {regexNameError ? null : (
               <h2 className="text-md ps-1 text-red-500">
-                Asegurate de no incluir simbolos en este input
+                Asegurate de no incluir simbolos o espacios después del nombre
               </h2>
             )}
           </div>
