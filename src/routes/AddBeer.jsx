@@ -71,12 +71,12 @@ function AddBeer() {
 
   const dispatch = useDispatch();
 
-  const notify = () => {
-    toast.success("Birra enviada", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 4000,
-    });
-  };
+  // const notify = () => {
+  //   toast.success("Birra enviada", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //     autoClose: 4000,
+  //   });
+  // };
 
   const notifyMissingField = () => {
     toast.warning("Asegurate de haber completado todos los campos", {
@@ -97,28 +97,46 @@ function AddBeer() {
     ) {
       notifyMissingField();
     } else {
-      notify();
+      // notify();
       const formData = new FormData();
-      formData.append("style", newBeer.style);
-      formData.append("description", newBeer.description);
-      formData.append("abv", newBeer.abv);
-      formData.append("photo", newBeer.photo);
-      formData.append("brewDate", newBeer.brewDate);
-      formData.append("location", newBeer.location);
 
-      const response = await axios({
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${user.token}`,
-        },
-        method: "post",
-        url: `${process.env.REACT_APP_API_URL}/beers`,
-        data: formData,
-      });
+      const data = {
+        style: newBeer.style,
+        description: newBeer.description,
+        abv: newBeer.abv,
+        photo: newBeer.photo,
+        brewDate: newBeer.brewDate,
+        location: newBeer.location,
+      };
 
-      navigate("/birras", { replace: true });
-      dispatch(create(response.data));
-      dispatch(newUserBeer(response.data));
+      for (const key in data) {
+        formData.append(key, newBeer[key]);
+      }
+
+      // data correcta
+
+      // formData.append("style", newBeer.style);
+      // formData.append("description", newBeer.description);
+      // formData.append("abv", newBeer.abv);
+      // formData.append("photo", newBeer.photo);
+      // formData.append("brewDate", newBeer.brewDate);
+      // formData.append("location", newBeer.location);
+      try {
+        const response = await axios({
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "post",
+          url: "https://birrateca-back.vercel.app/beers/",
+          data: formData,
+        });
+        navigate("/birras", { replace: true });
+        dispatch(create(response.data));
+        dispatch(newUserBeer(response.data));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
