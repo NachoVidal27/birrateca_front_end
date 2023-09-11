@@ -70,7 +70,17 @@ function Login() {
           />
         </div>
 
-        {error && <small className="text-red-500 text-sm">{error}</small>}
+        {error && (
+          <div>
+            <small className="text-red-500 text-sm font-semibold">
+              {error}
+            </small>
+            <small className="text-md block">
+              {" "}
+              <Link to="/reset-password">Olvidaste tu contraseña?</Link>
+            </small>
+          </div>
+        )}
         <button className="px-4 py-1 block mx-auto bg-black text-white border-1  w-28 font-semibold mt-4 rounded">
           Ingresar
         </button>

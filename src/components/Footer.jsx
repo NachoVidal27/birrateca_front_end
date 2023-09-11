@@ -13,14 +13,17 @@ function Footer() {
               Redes
             </h3>
             <div className="flex flex-col items-start mx-auto">
-              <Link>
+              <Link
+                to="https://www.instagram.com/cccuy.oficial/?hl=es"
+                target="_blank"
+              >
                 <div className=" text-white text-sm my-1 ">
                   <InstagramIcon className="mr-1 " />
                   Instagram CCCUY
                 </div>
               </Link>
 
-              <Link to="https://www.cerveceroscaseros.com.uy/">
+              <Link to="https://www.cerveceroscaseros.com.uy/" target="_blank">
                 <div className=" text-white text-sm mt-1">
                   <LanguageIcon className="mr-1 " />
                   Web CCCUY
@@ -29,7 +32,10 @@ function Footer() {
             </div>
           </div>
           <div className="my-4 md:my-0">
-            <Link to="https://www.cerveceroscaseros.com.uy/hagase-socio-del-club/">
+            <Link
+              to="https://www.cerveceroscaseros.com.uy/hagase-socio-del-club/"
+              target="_blank"
+            >
               <h3 className="text-white font-roboto text-xl md:border-b-2 md:w-[40%] mx-auto pb-2 mb-2">
                 Asociate al club!
               </h3>
@@ -43,14 +49,23 @@ function Footer() {
             <h3 className="text-white font-roboto text-xl md:border-b-2 md:w-[40%] mx-auto pb-2 mb-2">
               Equipo desarrollo
             </h3>
-            <Link to="https://www.linkedin.com/in/ignacio-vidal-dev/">
+            <Link
+              target="_blank"
+              to="https://www.linkedin.com/in/ignacio-vidal-dev/"
+            >
               <h4 className="text-white text-sm my-1">Ignacio Vidal</h4>
             </Link>
-            <Link to="https://www.linkedin.com/in/cristina-racedo-0a00551a4/">
+            <Link
+              target="_blank"
+              to="https://www.linkedin.com/in/cristina-racedo-0a00551a4/"
+            >
               <h4 className="text-white text-sm my-1">Cristina Racedo</h4>
             </Link>
 
-            <Link to="https://www.linkedin.com/in/sebastian-segura-piriz/">
+            <Link
+              target="_blank"
+              to="https://www.linkedin.com/in/sebastian-segura-piriz/"
+            >
               <h4 className="text-white text-sm my-1">Sebastián Segura</h4>
             </Link>
           </div>

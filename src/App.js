@@ -15,6 +15,7 @@ import AuthRequire from "./hooks/AuthRequire";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import EditBeer from "./routes/EditBeer";
+import PasswordReset from "./routes/PasswordReset";
 
 function App() {
   const [splash, setSplash] = useState(true);
@@ -33,6 +34,7 @@ function App() {
         <Navbar />
         <ScrollToTop>
           <Routes>
+            <Route path="/reset-password" element={<PasswordReset />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />

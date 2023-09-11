@@ -5,6 +5,7 @@ import { create } from "../redux/beerReducer";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../services/getAllUsers";
 import { ToastContainer, toast } from "react-toastify";
+// import { Link } from "react-router-dom";
 /* eslint-disable */
 function SignUp() {
   const [users, setUsers] = useState([]);
@@ -58,15 +59,16 @@ function SignUp() {
 
   const handlePhone = (e) => {
     const value = e.target.value;
+    const correctedNumber = value.replace(/\s*(\d+)\s*/g, "$1");
     let hasError = false;
     users.forEach((user) => {
-      if (user.phone === value) {
+      if (user.phone === correctedNumber) {
         console.log("coincide con db");
         hasError = true;
       }
     });
     setFormError({ ...formError, phone: hasError });
-    setUser({ ...user, phone: value });
+    setUser({ ...user, phone: correctedNumber });
     setRegexPhoneError(true);
   };
 
@@ -117,6 +119,13 @@ users.map((user) => {
   //   });
   // };
 
+  const notify = () => {
+    toast.success("Usuario creado correctamente", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 4000,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let newUser = {
@@ -137,12 +146,7 @@ users.map((user) => {
     console.log("phone " + checkPhone);
     console.log("email " + checkEmail);
 
-    if (
-      checkName === true &&
-      checkMemberId === true &&
-      checkPhone === true &&
-      checkEmail === true
-    ) {
+    if (checkName && checkMemberId && checkPhone && checkEmail) {
       console.log("no entramos al axios");
       const response = await axios({
         headers: {
@@ -152,11 +156,15 @@ users.map((user) => {
         url: `${process.env.REACT_APP_API_URL}/users`,
         data: newUser,
       });
+      notify();
       dispatch(create(response.data));
-      navigate("/login", { replace: true });
+      setTimeout(function () {
+        navigate("/login", { replace: true });
+      }, 2000);
+
       console.log("entramos al axios");
     } else {
-      /*si tiene error se setea el valir del state en false */
+      /*si tiene error se setea el valor del state en false */
       setRegexNameError(checkName);
       setRegexMemberIdError(checkMemberId);
       setRegexPhoneError(checkPhone);
@@ -172,7 +180,7 @@ users.map((user) => {
   }, []);
   return (
     <div className="mt-28 h-[75vh]">
-      <div className="flex justify-center text-start mx-auto ms-4 pt-2">
+      <div className="flex justify-center text-start mx-auto ms-4 pt-2 ">
         <form onSubmit={handleSubmit}>
           <div className="">
             <label className="me-6 ps-1" htmlFor="name">
@@ -189,12 +197,12 @@ users.map((user) => {
           </div>
           <div>
             {regexNameError ? null : (
-              <h2 className="text-md ps-1 text-red-500">
+              <h2 className="text-sm ps-1 text-red-500 ">
                 Asegurate de no incluir simbolos o espacios después del nombre
               </h2>
             )}
           </div>
-          <div className="">
+          <div className="mt-2">
             <label className="me-6 ps-1" htmlFor="memberId">
               Número de socio
             </label>
@@ -209,15 +217,15 @@ users.map((user) => {
           </div>
           <div>
             {formError.memberId ? (
-              <h2 className="text-md ps-1 text-red-500">Member Id en uso</h2>
+              <h2 className="text-sm ps-1 text-red-500">Member Id en uso</h2>
             ) : null}
             {regexMemberIdError ? null : (
-              <h2 className="text-md ps-1 text-red-500">
+              <h2 className="text-sm ps-1 text-red-500">
                 Asegurate de incluir un número de socio valido
               </h2>
             )}
           </div>
-          <div className="">
+          <div className="mt-2">
             <label className="me-6 ps-1" htmlFor="phone">
               Número de contacto
             </label>
@@ -232,15 +240,15 @@ users.map((user) => {
           </div>
           <div>
             {formError.phone ? (
-              <h2 className="text-md ps-1 text-red-500">Telefono en uso</h2>
+              <h2 className="text-sm ps-1 text-red-500">Telefono en uso</h2>
             ) : null}
             {regexPhoneError ? null : (
-              <h2 className="text-md ps-1 text-red-500">
+              <h2 className="text-sm ps-1 text-red-500">
                 Asegurate que el número sea valido
               </h2>
             )}
           </div>
-          <div className="mb-1">
+          <div className="mt-2">
             <label className="me-6 ps-1" htmlFor="email">
               Email
             </label>
@@ -253,16 +261,16 @@ users.map((user) => {
               placeholder="Ingrese su email"
             />
             {formError.email ? (
-              <h2 className="text-md ps-1 text-red-500">E-mail en uso</h2>
+              <h2 className="text-sm ps-1 text-red-500">E-mail en uso</h2>
             ) : null}
             {regexEmailError ? null : (
-              <h2 className="text-md ps-1 text-red-500">
+              <h2 className="text-sm ps-1 text-red-500">
                 Asegurate de incluir un email valido
               </h2>
             )}
           </div>
 
-          <div className="mb-2">
+          <div className="mt-2">
             <label className="me-6 ps-1" htmlFor="password">
               Password
             </label>
@@ -275,8 +283,8 @@ users.map((user) => {
               placeholder="Ingrese su password"
             />
           </div>
-          <div className="flex justify-center">
-            <button className="px-4 py-1  bg-cream-light hover:bg-cream-dark border-2 text-l rounded mt-2 ">
+          <div className="flex justify-center mt-4">
+            <button className="px-4 py-1 block mx-auto bg-black hover:bg-cream-dark text-white border-1  w-28 font-semibold  rounded">
               Guardar
             </button>
             <ToastContainer />

@@ -71,12 +71,12 @@ function AddBeer() {
 
   const dispatch = useDispatch();
 
-  // const notify = () => {
-  //   toast.success("Birra enviada", {
-  //     position: toast.POSITION.TOP_CENTER,
-  //     autoClose: 4000,
-  //   });
-  // };
+  const notify = () => {
+    toast.success("Birra enviada", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 4000,
+    });
+  };
 
   const notifyMissingField = () => {
     toast.warning("Asegurate de haber completado todos los campos", {
@@ -97,7 +97,7 @@ function AddBeer() {
     ) {
       notifyMissingField();
     } else {
-      // notify();
+      notify();
       const formData = new FormData();
 
       const data = {
@@ -113,14 +113,6 @@ function AddBeer() {
         formData.append(key, newBeer[key]);
       }
 
-      // data correcta
-
-      // formData.append("style", newBeer.style);
-      // formData.append("description", newBeer.description);
-      // formData.append("abv", newBeer.abv);
-      // formData.append("photo", newBeer.photo);
-      // formData.append("brewDate", newBeer.brewDate);
-      // formData.append("location", newBeer.location);
       try {
         const response = await axios({
           headers: {
