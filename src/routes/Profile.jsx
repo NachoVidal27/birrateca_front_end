@@ -149,7 +149,7 @@ function Profile() {
                 <div>
                   <input
                     type="text"
-                    className="border border-black rounded px-2 w-[900%] md:w-full"
+                    className="border border-black rounded px-2 w-[90%] md:w-full"
                     value={name}
                     onChange={handleName}
                   />
