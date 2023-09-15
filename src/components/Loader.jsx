@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import logo from "../assets/logoBirrateca.png";
+import logo from "../assets/logoCCCUY.png";
 
 function Loader() {
   return (

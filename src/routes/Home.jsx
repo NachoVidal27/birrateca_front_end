@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import barril from "../assets/barrilHero.jpeg";
+import hero from "../assets/hero-equipo-2.jpg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
 import beerFromTop from "../assets/top-glass.png";
@@ -26,7 +26,7 @@ function Home() {
   return mobile ? (
     <>
       <div class="relative">
-        <img src={barril} className="w-full  " alt="" />
+        <img src={hero} className="w-full  " alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
@@ -111,15 +111,15 @@ function Home() {
     <>
       <div class="relative">
         <img
-          src={barril}
-          className="w-full shadow-[-12px_13px_35px_5px_#00000024]"
+          src={hero}
+          className="w-full mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           alt=""
         />
-        <div class="absolute inset-0 flex items-center justify-center">
+        {/* <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
           </h2>
-        </div>
+        </div> */}
       </div>
       <div className="w-[70%] 2xl:w-[65%] mx-auto">
         <div className="mt-6">

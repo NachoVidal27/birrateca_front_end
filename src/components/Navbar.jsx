@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import logo from "../assets/logoBirrateca.png";
+import logo from "../assets/logoCCCUY_2.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
