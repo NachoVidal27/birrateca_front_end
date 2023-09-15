@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import hero from "../assets/hero-equipo-2.jpg";
+import hero from "../assets/set.jpg";
 import cheer from "../assets/cheer.jpg";
 import cheers from "../assets/cheers.jpg";
 import beerFromTop from "../assets/top-glass.png";
