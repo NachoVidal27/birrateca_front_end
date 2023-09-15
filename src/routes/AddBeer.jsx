@@ -127,7 +127,7 @@ function AddBeer() {
         dispatch(create(response.data));
         dispatch(newUserBeer(response.data));
       } catch (error) {
-        console.log(error);
+        console.error("Error al enviar la cerveza:", error);
       }
     }
   };
