@@ -21,7 +21,7 @@ function Beers() {
     beers &&
     (beers.length === 0 ? (
       <div className="h-[60vH]">
-        <h2 className="text-xl text-red-600">hola</h2>
+        <h2 className="text-xl text-red-600">error</h2>
       </div>
     ) : (
       <div className="mt-20 mb-12 h-fit">

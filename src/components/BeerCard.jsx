@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ExchangeCards from "./ExchangeCards";
 import { Link } from "react-router-dom";
-import WestIcon from "@mui/icons-material/West";
+// import WestIcon from "@mui/icons-material/West";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,6 +14,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
   const [exchangeModal, setExchangeModal] = useState(false);
   const [myBeerCard, setMyBeerCard] = useState(false);
   const [selectedBeer, setSelectedBeer] = useState({});
+  const [exchangeFlag, setExchangeFlag] = useState(false);
 
   const handleOpenModal = () => {
     setExchangeModal(true);
@@ -67,6 +68,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
       .catch((error) => {
         console.log(error.text);
       });
+    setExchangeFlag(true);
   };
 
   const onClick2 = debounce(sendEmail, 2000);
@@ -176,7 +178,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                   ) : (
                     <div className="relative p-6 flex-auto border-r grid grid-cols-2 md:grid-cols-1 h-[300px] ">
                       <div className="relative">
-                        <p className="absolute top-0 left-0 md:left-12 ms-1 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
+                        <p className="absolute top-0 left-2 md:left-12 ms-1 p-2 bg-black text-white font-semibold rounded border-1 bg-opacity-70">
                           <ArrowBackOutlinedIcon
                             onClick={handleCloseBeerCard}
                             className="brightness-120 text-bold"
@@ -213,13 +215,20 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                   )}
                 </div>
                 {user.beers.length > 0 ? (
-                  <button
-                    className="bg-black px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white"
-                    onClick={onClick2}
-                  >
-                    Intercambiar
-                    <ToastContainer />
-                  </button>
+                  !exchangeFlag ? (
+                    <button
+                      className="bg-black px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white"
+                      onClick={onClick2}
+                    >
+                      Intercambiar
+                      <ToastContainer />
+                    </button>
+                  ) : (
+                    <button className="bg-cream-dark px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white">
+                      Enviado ✔
+                      <ToastContainer />
+                    </button>
+                  )
                 ) : (
                   <Link to="/birra-form">
                     <button className="bg-black px-3 py-2 w-fit mx-auto my-3  rounded text-md text-white">

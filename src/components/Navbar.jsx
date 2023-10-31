@@ -24,7 +24,6 @@ function Navbar() {
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
-    console.log(toggle);
   };
 
   useEffect(() => {
