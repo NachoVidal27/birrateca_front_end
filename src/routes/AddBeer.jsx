@@ -87,19 +87,10 @@ function AddBeer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      newBeer.abv === "" ||
-      newBeer.brewDate === "" ||
-      newBeer.description === "" ||
-      newBeer.photo === "" ||
-      newBeer.style === "" ||
-      newBeer.location === ""
-    ) {
-      notifyMissingField();
-    } else {
+    let form = document.getElementById("form-addBeer");
+    if (form.reportValidity()) {
       notify();
       const formData = new FormData();
-
       const data = {
         style: newBeer.style,
         description: newBeer.description,
@@ -129,6 +120,8 @@ function AddBeer() {
       } catch (error) {
         console.error("Error al enviar la cerveza:", error);
       }
+    } else {
+      notifyMissingField();
     }
   };
 
@@ -136,7 +129,7 @@ function AddBeer() {
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[90vh]">
         <div className="md:mt-28">
-          <form onSubmit={handleSubmit}>
+          <form id="form-addBeer" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
               <div className="flex items-start md:w-[50%] mx-auto">
                 <label
@@ -151,6 +144,7 @@ function AddBeer() {
                 type="text"
                 onChange={handleStyle}
                 value={newBeer.style}
+                required
               />
             </div>
             <hr className="ms-28 me-4 my-2 invisible md:visible" />
@@ -168,6 +162,7 @@ function AddBeer() {
                 type="text"
                 onChange={handleAbv}
                 value={newBeer.abv}
+                required
               />
             </div>
             <hr className="ms-28 me-4 my-2 invisible md:visible" />
@@ -185,6 +180,7 @@ function AddBeer() {
                 className="border-2 mx-8 md:mx-2 roundeed"
                 htmlFor="location"
                 onChange={handleLocation}
+                required
               >
                 <option value="Artigas">Artigas</option>
                 <option value="Canelones">Canelones</option>
@@ -221,6 +217,7 @@ function AddBeer() {
                 className="border-2 mx-8 md:mx-2 roundeed"
                 type="file"
                 onChange={handlePhoto}
+                required
               />
             </div>
 
@@ -249,6 +246,7 @@ function AddBeer() {
                 type="date"
                 onChange={handleBrewDate}
                 value={newBeer.brewDate}
+                required
               />
             </div>
             <hr className="ms-28 me-4 my-2 invisible md:visible" />
@@ -267,6 +265,7 @@ function AddBeer() {
                 onChange={handleDescription}
                 value={newBeer.description}
                 maxLength={120}
+                required
               />
               <div></div>
               <small className={charCount < 20 ? "text-red-500" : null}>

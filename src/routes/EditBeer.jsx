@@ -43,19 +43,19 @@ function EditBeer() {
     setBirra({ ...birra, photo: photo });
   };
 
-  const notifyMissingField = () => {
-    toast.warning("Asegurate de haber seleccionado una foto", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
-    });
-  };
+  // const notifyMissingField = () => {
+  //   toast.warning("Asegurate de haber seleccionado una foto", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //     autoClose: 2000,
+  //   });
+  // };
 
-  const notifySuccess = () => {
-    toast.success("Birra editada correctamente", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 6000,
-    });
-  };
+  // const notifySuccess = () => {
+  //   toast.success("Birra editada correctamente", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //     autoClose: 6000,
+  //   });
+  // };
 
   const notifyDelete = () => {
     toast.success("Birra eliminada correctamente", {
@@ -99,33 +99,35 @@ function EditBeer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let form = document.getElementById("form-editBeer");
+    if (form.reportValidity()) {
+      try {
+        const formData = new FormData();
+        formData.append("_id", birra._id);
+        formData.append("style", birra.style);
+        formData.append("description", birra.description);
+        formData.append("location", birra.location);
+        formData.append("abv", birra.abv);
+        formData.append("photo", birra.photo);
+        formData.append("brewDate", birra.brewDate);
 
-    try {
-      const formData = new FormData();
-      formData.append("_id", birra._id);
-      formData.append("style", birra.style);
-      formData.append("description", birra.description);
-      formData.append("location", birra.location);
-      formData.append("abv", birra.abv);
-      formData.append("photo", birra.photo);
-      formData.append("brewDate", birra.brewDate);
+        const response = await axios({
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "patch",
+          url: `${process.env.REACT_APP_API_URL}/beers/${birra.id}`,
+          data: formData,
+        });
+        navigate("/birras", { replace: true });
+        dispatch(editAllBeers(response.data));
+      } catch (error) {
+        console.log(error);
+      }
 
-      const response = await axios({
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${user.token}`,
-        },
-        method: "patch",
-        url: `${process.env.REACT_APP_API_URL}/beers/${birra.id}`,
-        data: formData,
-      });
-      navigate("/birras", { replace: true });
-      dispatch(editAllBeers(response.data));
-    } catch (error) {
-      console.log(error);
+      // dispatch(newUserBeer(response.data));
     }
-
-    // dispatch(newUserBeer(response.data));
   };
 
   return !birra ? (
@@ -138,7 +140,7 @@ function EditBeer() {
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 mb-32 h-[80vh]">
         <div className="md:mt-28">
           <ToastContainer />
-          <form onSubmit={handleSubmit}>
+          <form id="form-editBeer" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
               <div className="flex items-start md:w-[40%] mx-auto">
                 <label
@@ -154,6 +156,7 @@ function EditBeer() {
                 name="style"
                 defaultValue={birra.style}
                 onChange={handleStyle}
+                required
               />
             </div>
 
@@ -171,6 +174,7 @@ function EditBeer() {
                 type="text"
                 defaultValue={birra.abv}
                 onChange={handleAbv}
+                required
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
@@ -187,6 +191,7 @@ function EditBeer() {
                 className="border-2 mx-8 md:mx-2 roundeed"
                 htmlFor="location"
                 onChange={handleLocation}
+                required
               >
                 <option value="Artigas">Artigas</option>
                 <option value="Canelones">Canelones</option>
@@ -222,6 +227,7 @@ function EditBeer() {
                 className="border-2 mx-8 md:mx-2 roundeed"
                 type="file"
                 onChange={handlePhoto}
+                required
               />
             </div>
 
@@ -249,6 +255,7 @@ function EditBeer() {
                 type="date"
                 defaultValue={birra.brewDate}
                 onChange={handleBrewDate}
+                required
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
@@ -265,18 +272,12 @@ function EditBeer() {
                 type="text"
                 defaultValue={birra.description}
                 onChange={handleDescription}
+                required
               />
               <div></div>
 
               <div className="">
-                <button
-                  className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end"
-                  onClick={
-                    typeof birra.photo === "string"
-                      ? notifyMissingField
-                      : notifySuccess
-                  }
-                >
+                <button className="px-4 py-2 mt-6 bg-black text-white font-semibold rounded text-end">
                   Guardar
                 </button>
                 <button
