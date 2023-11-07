@@ -87,7 +87,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
               {style} - {abv}%
             </h4>
             <h6 className="text-xs font-roboto">
-              Elaborada en {location} el {date}
+              Disponible en {location} el {date}
             </h6>
 
             <h5 className="text-xs text-start mx-6 mt-2 h-2 font-roboto">
@@ -138,7 +138,7 @@ function BeerCard({ photo, style, abv, date, description, location, user_id }) {
                         {description}
                       </p>
                       <p className="mt-2 text-sm md:text-md invisible md:visible font-semibold">
-                        Elaborado en: {location} el {date}
+                        Disponible en: {location} el {date}
                       </p>
                     </div>
                   </div>
