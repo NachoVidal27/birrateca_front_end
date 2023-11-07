@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import hero from "../assets/set.jpg";
-import cheer from "../assets/cheer.jpg";
-import cheers from "../assets/cheers.jpg";
-import beerFromTop from "../assets/top-glass.png";
+import hero from "../assets/hero-cccuy.jpg";
+import cheer from "../assets/individual.jpg";
+import cheers from "../assets/grupo-chico-2.jpg";
+import beerFromTop from "../assets/botella-porter.jpg";
 
 function Home() {
   const [mobile, setMobile] = useState(true);
@@ -25,7 +25,7 @@ function Home() {
   });
   return mobile ? (
     <>
-      <div class="relative">
+      <div class="relative mt-16">
         <img src={hero} className="w-full  " alt="" />
         <div class="absolute inset-0 flex items-center justify-center">
           <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
@@ -50,9 +50,9 @@ function Home() {
         <div className="w-[80%] border border-b-1 mx-auto my-2 border-cream-dark opacity-60"></div>
         <div>
           <img
-            src={beerFromTop}
+            src={cheers}
             alt="cervecita espumosa"
-            className="h-[250px] rounded-full mx-auto mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
+            className="h-[250px] w-[250px] rounded-full mx-auto mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <h3 className="font-roboto text-2xl font-semibold mt-6">
             Nuestro objetivo
@@ -68,7 +68,7 @@ function Home() {
         <div className="w-[40%] border border-b-1 mx-auto my-6 border-cream-dark opacity-30 "></div>
         <div>
           <img
-            src={cheers}
+            src={beerFromTop}
             alt="cervecita espumosa"
             className="h-[250px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
           />
@@ -112,7 +112,7 @@ function Home() {
       <div class="relative">
         <img
           src={hero}
-          className="w-full mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
+          className="w-full mt-6 shadow-[-12px_13px_35px_5px_#00000024]"
           alt=""
         />
         {/* <div class="absolute inset-0 flex items-center justify-center">
@@ -137,9 +137,9 @@ function Home() {
         <div className="w-[80%] border border-b-1 mx-auto my-4 border-cream-dark opacity-60"></div>
         <div className="flex space-evenly">
           <img
-            src={beerFromTop}
+            src={cheers}
             alt="cervecita espumosa"
-            className="h-[400px] rounded-full mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
+            className="h-[400px] w-[400px] rounded-full mt-10 shadow-[-12px_13px_35px_5px_#00000024]"
           />
           <div className="my-auto ms-20 2xl:ms-40">
             <h3 className="font-roboto text-2xl 2xl:text-3xl font-semibold text-start">
@@ -171,7 +171,7 @@ function Home() {
             </p>
           </div>
           <img
-            src={cheers}
+            src={beerFromTop}
             alt="cervecita espumosa"
             className="h-[400px] mt-10 border rounded-full mx-auto shadow-[-12px_13px_35px_5px_#00000024]"
           />
