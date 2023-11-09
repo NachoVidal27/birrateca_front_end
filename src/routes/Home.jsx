@@ -23,12 +23,13 @@ function Home() {
       window.removeEventListener("resize", handleResize);
     };
   });
+
   return mobile ? (
     <>
-      <div class="relative mt-16">
+      <div className="relative mt-16">
         <img src={hero} className="w-full  " alt="" />
-        <div class="absolute inset-0 flex items-center justify-center">
-          <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h2 className="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
           </h2>
         </div>
@@ -109,14 +110,14 @@ function Home() {
     </>
   ) : (
     <>
-      <div class="relative">
+      <div className="relative">
         <img
           src={hero}
           className="w-full mt-6 shadow-[-12px_13px_35px_5px_#00000024]"
           alt=""
         />
-        {/* <div class="absolute inset-0 flex items-center justify-center">
-          <h2 class="invisible md:visible text-5xl font-bold font text-white text-center">
+        {/* <div className="absolute inset-0 flex items-center justify-center">
+          <h2 className="invisible md:visible text-5xl font-bold font text-white text-center">
             Bienvenido a la Birrateca del CCCUY
           </h2>
         </div> */}

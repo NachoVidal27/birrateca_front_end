@@ -32,6 +32,29 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  --sb-track-color: #0e0604;
+  --sb-thumb-color: #e2c59e;
+  --sb-size: 15px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 2px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 2px;
+  border: 1px solid #ddaf79;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

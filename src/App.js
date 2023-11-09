@@ -16,6 +16,7 @@ import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import EditBeer from "./routes/EditBeer";
 import PasswordReset from "./routes/PasswordReset";
+import ReportError from "./routes/ReportError";
 
 function App() {
   const [splash, setSplash] = useState(true);
@@ -44,6 +45,7 @@ function App() {
               <Route path="/perfil" element={<Profile />} />
               <Route path="/birra-form" element={<AddBeer />} />
               <Route path="/birras" element={<Beers />} />
+              <Route path="/reportar-error" element={<ReportError />} />
             </Route>
           </Routes>
         </ScrollToTop>
