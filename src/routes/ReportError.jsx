@@ -71,7 +71,7 @@ function ReportError() {
         <input
           type="text"
           id="url"
-          className="border-2 border-black mb-4 w-[75vw] md:w-[25vw] rounded"
+          className="border-2 px-1 border-black mb-4 w-[75vw] md:w-[25vw] rounded"
           required
           placeholder=" http://localhost:3000/birras"
           onChange={urlHandler}
@@ -85,7 +85,7 @@ function ReportError() {
           maxLength={300}
           rows="10"
           cols="50"
-          className="border-2 border-black  roundeed h-16 resize-none  w-[75vw] md:w-[25vw] rounded"
+          className="border-2 px-1 border-black  roundeed h-16 resize-none  w-[75vw] md:w-[25vw] rounded"
           placeholder="no se publica la cerveza"
           onChange={errorHandler}
         />
